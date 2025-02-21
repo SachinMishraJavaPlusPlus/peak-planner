@@ -1,0 +1,260 @@
+/* LASTEST WORKING SEARCHRESULTS.CSS 4 DEC 9PM
+.search-results-page {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.trek-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  
+}
+
+.season-tag {
+  font-size: 12px;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.season-tag.all-seasons {
+  background-color: #f44336;
+}
+
+.season-tag.summer {
+  background-color: #ff9800;
+}
+
+.season-tag.monsoon {
+  background-color: #4caf50;
+}
+
+.season-tag.winter {
+  background-color: #03a9f4;
+}
+
+
+.trek-card {
+    display: flex;
+    background-color: var(--secondaryClr);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.trek-card:hover{
+    cursor:auto;
+}
+
+.trekDescriptionsClick{
+    cursor: pointer ;
+    margin-top: 15px;
+    color: var(--primaryClr);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.trekDescriptionsClick:hover{
+    cursor: pointer ;
+    text-decoration: underline;
+    margin-top: 15px;
+}
+
+.trek-image {
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.trek-details {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.trek-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primaryClr);
+    margin-bottom: 10px;
+    text-decoration: none; Remove blue underline
+}
+
+.trek-header a {
+    text-decoration: none; Remove blue underline from the link
+}
+
+.trek-header a:hover .trek-title {
+    cursor: pointer; Only change cursor to pointer when hovering on title
+    text-decoration: underline;
+}
+
+
+
+
+
+.trek-description {
+    font-size: var(--bodyText);
+    color: var(--textclr);
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.trek-altitude,
+.trek-duration {
+    font-size: var(--bodyText);
+    color: var(--textclr);
+}
+
+.trek-card-itinerary-link {
+    cursor: pointer;
+    margin-top: 10px;
+    color: var(--primaryClr);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.trek-card-itinerary-link:hover {
+    cursor: pointer ;
+    text-decoration: underline;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Styling for Trek Information Boxes */
+.trek-info-boxes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    padding-left: 150px;
+    padding-right: 150px;
+  }
+  
+  .info-box {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px; /* Adjust width as needed */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.166);
+    text-align: center;
+  }
+
+  .info-box:hover {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px; /* Adjust width as needed */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.495);
+    text-align: center;
+  }
+  
+  .info-icon {
+    color: #e53935; /* Use a color similar to the image, adjust as needed */
+    font-size: 24px; /* Adjust icon size as needed */
+    margin-bottom: 10px;
+  }
+  
+  .info-label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+.trek-details{
+    padding: 20px;
+    border: 1px solid black;
+}
+
+  /* Trek Card Styles */
+  .search-results-page {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .trek-card-searchResults {
+    background-color: beige;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    cursor: auto;
+  }
+  
+  .trek-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 15px;
+    padding: 20px;
+    padding-left: 10px;
+  }
+  
+  .trek-title {
+
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primaryClr);
+    margin-bottom: 10px;
+    /* padding-left: 460px; */
+    text-decoration: none; /* Remove blue underline */
+    
+  }
+  
+  .trek-header a {
+    text-decoration: none; /* Remove blue underline from the link */
+    
+  }
+  
+  .trek-header a:hover .trek-title {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+.trek-description-heading{
+    color: var(--primaryClr);
+    font-size: 20px;
+    font-weight: bolder;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+  .trek-description {
+    font-size: var(--bodyText);
+    color: var(--textclr);  
+    line-height: 1.5;
+    margin-bottom: 10px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+
+  }
+  

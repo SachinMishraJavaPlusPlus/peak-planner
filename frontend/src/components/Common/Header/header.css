@@ -1,0 +1,314 @@
+/* sticky menu */
+
+.is-sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  animation: smothScroll 1s forwards;
+  /* background: beige; */
+  background: rgb(87,111,64);
+  z-index: 999;
+  box-shadow: var(--bs-box-shadow-sm) !important;
+}
+@keyframes smothScroll {
+  0% {
+    transform: translateY(-40px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+
+.my-custom-login-button{
+    background-color: #F9A62F; /* Custom background color */
+    color: rgb(255, 255, 255); /* Custom text color */
+    font-weight: bold; /* Make text bold */
+    transition: background-color 0.3s, transform 0.2s; /* Add smooth transition */
+    padding: 10px 10px; /* Adjust padding for better spacing */
+    width: 70px;
+    border-radius: 5px; /* Custom rounded corners */
+}
+
+.my-custom-login-button:hover {
+    background-color: #576F40; /* Darker shade for hover state */
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    color: #ffffff; /* Ensure text color remains readable */
+    border: 1px solid black;
+}
+
+
+.my-custom-signUp-button{
+    background-color: #F9A62F; /* Custom background color */
+    color: rgb(255, 255, 255); /* Custom text color */
+    border: none; /* Remove default border */
+    font-weight: bold; /* Make text bold */
+    transition: background-color 0.3s, transform 0.2s; /* Add smooth transition */
+    padding: 10px 10px; /* Adjust padding for better spacing */
+    width: 80px;
+    border-radius: 5px; /* Custom rounded corners */
+}
+
+.my-custom-signUp-button:hover {
+    background-color: #576F40; /* Darker shade for hover state */
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    color: #ffffff; /* Ensure text color remains readable */
+    border: 1px solid black;
+}
+
+.is-sticky .navbar .navbar-brand a,
+.is-sticky .navbar .offcanvas-body a {
+  color: var(--black) !important;
+  color: white !important;
+}
+
+.is-sticky .toggle_btn {
+  color: var(--primaryClr) !important;
+}
+
+/* Navbar Background */
+header {
+  z-index: 999;
+  /* backdrop-filter: blur(90px); */
+  /* background: white; */
+  background: #576f40;
+  /* background: var(--primaryClr); */
+  position: absolute;
+  top: 0;
+  padding: 0px 0px;
+  width: 100%;
+}
+
+
+
+header .navbar .offcanvas-body .dropdown-menu a {
+  color: black !important;
+}
+
+header .navbar .offcanvas-body a:hover {
+  color: #F9A62F !important;
+}
+
+header .navbar .offcanvas-body .dropdown-menu {
+  min-width: 12rem;
+}
+
+header .navbar .offcanvas-body .dropdown-menu .dropdown-item {
+  color: black !important;
+}
+
+/* Default Styling for Dropdown Items */
+.season-dropdown {
+  padding: 10px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--black);
+  background-color: white;
+  display: block;
+}
+.season-dropdown.monsoon {
+  padding: 10px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--black);
+  background-color: white;
+  display: block;
+}
+.season-dropdown.winter {
+  padding: 10px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--black);
+  background-color: white;
+  display: block;
+}
+.season-dropdown.summer {
+  padding: 10px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--black);
+  background-color: white;
+  display: block;
+}
+.season-dropdown.all-seasons {
+  padding: 10px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--black);
+  background-color: white;
+  display: block;
+}
+
+.signUpBtn{
+  background-color: #F9A62F;
+  /* padding: ; */
+}
+
+
+.searchBtnSearchBar{
+  background-color: white;
+}
+
+/* Specific Colors for Each Season */
+.season-dropdown.monsoon:hover {
+  background-color: #A8E6CF; /* Light green for Spring */
+  color: var(--black); /* Text color to maintain visibility */
+}
+
+.season-dropdown.summer:hover {
+  background-color: #FFD700; /* Yellow for Summer */
+  color: var(--black); /* Text color to maintain visibility */
+}
+
+.season-dropdown.all-seasons:hover {
+  background-color: #FFB347; /* Orange for All Seasons */
+  color: var(--black); /* Text color to maintain visibility */
+}
+
+.season-dropdown.winter:hover {
+  background-color: #87CEFA; /* Light blue for Winter */
+  color: var(--black); /* Text color to maintain visibility */
+}
+
+/* Optional: Adding Smooth Transition for the Hover Effect */
+.season-dropdown {
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+@media only screen and (max-width: 991px) {
+  header .navbar .toggle_btn {
+    font-size: var(--bodyText);
+    color: var(--primaryClr);
+    border: 2px solid var(--primaryClr);
+    padding: 7px 10px;
+  }
+
+  .is-sticky .navbar .toggle_btn {
+    border: 2px solid var(--primaryClr);
+  }
+
+  .offcanvas-header {
+    border: 1px solid gainsboro;
+  }
+
+  .offcanvas-header .logo {
+    font-size: 26px;
+    color: var(--black) !important;
+    font-family: var(--fontFamily1);
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .offcanvas-body .nav-link {
+    padding: 12px 0px;
+    color: var(--black);
+  }
+
+  .offcanvas-body .dropdown-item {
+    padding: 12px 10px;
+    color: var(--black);
+  }
+}
+/* Update the logo size to fit within header */
+header .imgLogo {
+  width: 150px;  /* Reduced from 90px */
+  height: auto; /* Reduced from 90px */
+}
+
+/* Update font weights for nav links */
+header .navbar .offcanvas-body a {
+  font-size: 15px;
+  color: white !important;
+  line-height: 150%;
+  font-family: var(--fontFamily);
+  font-weight: 600; /* Added specific font weight */
+  text-transform: uppercase;
+}
+
+/* Update dropdown items font weight */
+header .navbar .offcanvas-body .dropdown-menu .dropdown-item {
+  color: black !important;
+  font-weight: 500; /* Added specific font weight */
+}
+
+/* Update sticky header logo alignment */
+.is-sticky {
+  padding: 5px 0; /* Added padding to center content better */
+}
+
+/* Update mobile header font weights */
+@media only screen and (max-width: 991px) {
+  .offcanvas-header .logo {
+    font-size: 26px;
+    color: var(--black) !important;
+    font-family: var(--fontFamily1);
+    font-weight: 600; /* Changed from bold */
+  }
+
+  .offcanvas-body .nav-link {
+    padding: 12px 0px;
+    color: var(--black);
+    font-weight: 500; /* Added specific font weight */
+  }
+
+  .offcanvas-body .dropdown-item {
+    padding: 12px 10px;
+    color: var(--black);
+    font-weight: 500; /* Added specific font weight */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .imgLogo {
+    width: 120px;
+  }
+}
+
+/* Burger Menu Icon */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Burger Menu Button */
+.navbar-toggler {
+  border: none; 
+  padding: 0.5rem; 
+  background-color: transparent; 
+}
+
+.navbar-toggler:focus {
+  box-shadow: none; 
+}
+
+.navbar-toggler:hover {
+  background-color: rgba(255, 255, 255, 0.1); 
+}
+
+/* Offcanvas Menu */
+.offcanvas {
+  background-color: #576f40; 
+}
+
+.offcanvas-body {
+  padding: 20px; 
+}
+
+.offcanvas-body .nav-link {
+  color: white !important; 
+  font-size: 16px;
+  padding: 10px 0; 
+}
+
+.offcanvas-body .nav-link:hover {
+  color: #F9A62F !important;
+}
+
+/* Close Button */
+.btn-close {
+  filter: invert(1);
+}
+
+.btn-close:focus {
+  box-shadow: none; 
+}

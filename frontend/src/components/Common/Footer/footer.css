@@ -1,0 +1,77 @@
+.footer-section {
+    background-color: #1f1f1f; /* Dark background to match header */
+    color: var(--white); /* White text */
+    padding-top: 30px;
+    font-family: var(--fontFamily); /* Matching font family */
+}
+
+.footer-column {
+    margin-bottom: 30px; /* Space between columns */
+}
+
+.footer-column h5 {
+    margin-bottom: 20px; /* Space below heading */
+    font-size: 1.5rem; /* Increase heading size */
+    font-family: var(--fontFamily1); /* Matching font family */
+    font-weight: bold; /* Bold font */
+    position: relative; /* Position for underline effect */
+    text-transform: uppercase; /* Consistent with header style */
+}
+
+.footer-column h5::after {
+    content: "";
+    display: block;
+    width: 50px; /* Underline width */
+    height: 4px; /* Underline height */
+    background: var(--primaryClr); /* Underline color to match primary */
+    margin-top: 5px; /* Space above underline */
+}
+
+.social-links, .quick-links {
+    list-style: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+    text-transform: capitalize; /* Capitalize link text */
+}
+
+.social-links li, .quick-links li {
+    margin: 10px 0; /* Space between links */
+}
+
+.social-links a, .quick-links a {
+    color: var(--white); /* White text */
+    font-size: 14px; /* Consistent link size */
+    font-weight: bold; /* Bold links */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s; /* Transition for hover effect */
+}
+
+.social-links a:hover, .quick-links a:hover {
+    color: var(--primaryClr); /* Change color on hover to match header */
+}
+
+.footer-bottom {
+    background-color: #000000; /* Darker background for footer bottom */
+    padding: 20px 0; /* Padding for top and bottom */
+    text-align: center; /* Center the text */
+}
+
+.footer-bottom p {
+    margin: 0; /* Remove default margin */
+    font-size: 0.9rem; /* Smaller font size */
+    color: var(--lightGray); /* Light grey color */
+}
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+    .footer-column {
+        text-align: center; /* Center align text on smaller screens */
+    }
+
+    .footer-column h5 {
+        font-size: 1.25rem; /* Adjust heading size for smaller screens */
+    }
+
+    .social-links a, .quick-links a {
+        font-size: var(--bodyText); /* Adjust link size */
+    }
+}

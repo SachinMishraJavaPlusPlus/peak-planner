@@ -1,0 +1,126 @@
+.dropdown-custom #dropdown-custom-components {
+    width: 100%;
+    background: none;
+    border: none;
+    background-color: #F9A62F;
+    font-family: var(--fontFamily);
+    width: 210px;
+    left: 10px;
+    text-align: left;
+    padding: 5px 10px 10px 5px;
+    padding-left: 10px !important;
+    margin-top: 5px;
+    /* border: 10; */
+    /* border-color: black; */
+    /* border-radius: 10px; */
+    font-size: var(--textFont);
+    position: relative;
+    color:var(--textClr)
+}
+
+.dropdown-custom #dropdown-custom-components:hover {
+    width: 100%;
+    background: none;
+    background-color: #F9A62F;
+    font-family: var(--fontFamily);
+    width: 210px;
+    left: 10px;
+    text-align: left;
+    padding: 5px 10px 10px 5px;
+    padding-left: 10px !important;
+    border: none;
+    /* border: 100; */
+    /* border-color: black; */
+    /* border-radius: 10px; */
+    font-size: var(--textFont);
+    position: relative;
+    color:var(--textClr)
+}
+
+.dropdown-custom #dropdown-custom-components span{
+    font-family: var(--fontFamily) !important; 
+    /* font-weight: bold; */
+}
+
+
+.dropdown-custom #dropdown-custom-components:focus{
+    border: none;
+    outline: unset;
+    box-shadow: none;
+    font-weight: bold;
+    /* border: 100; */
+    /* border-color: black; */
+    /* border-radius: 10px; */
+    /* padding: 10px; */
+}
+
+.dropdown-custom .dropdown-toggle{
+    font-family: bootstrap-icons !important;
+    font-style: normal;
+    font-weight: 400 !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+}
+
+.dropdown-custom .dropdown-toggle::before {
+    position: absolute;
+    left: -22px;
+    /* right: 10; */
+    bottom: 8px;
+    content: "\f52a";
+    font-size: var(--bodyText);
+    color: black;
+}
+
+.dropdown-custom .dropdown-toggle::after {
+    border: none;
+    position: absolute;
+    right: 10px;
+    bottom: 6px;
+    content: "\f282";
+    font-size: var(--bodyText);
+    color: var(--textclr);   
+}
+
+/* .dropdown-custom .dropdown-menu {
+    width: 100%;
+    padding: 10px;
+    min-width: 12rem;
+    z-index: 99;
+} */
+
+.dropdown-custom .dropdown-menu {
+    max-height: 200px; /* Limit the dropdown height */
+    overflow-y: auto;  /* Allow scrolling */
+    width: 100%;      /* Adjust the width as needed */
+    padding: 10px;
+    min-width: 12rem;
+    z-index: 99;
+  }
+
+
+  .dropdown-custom .dropdown-toggle {
+  width: 100%;
+  text-align: left;  /* Align dropdown text to the left */
+}
+
+.dropdown-custom .form-control {
+  margin-bottom: 10px; /* Add some margin below the input */
+}
+
+
+.dropdown-custom  .list-unstyled li a {
+    padding: 10px 8px;
+    padding: 10px;
+    font-weight: 500;
+    transition: all 0.4s ease-out;    
+}
+
+.dropdown-custom  .list-unstyled li:hover a{
+    font-weight: bold;
+    
+}
+
+
+

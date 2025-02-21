@@ -1,0 +1,695 @@
+/* 
+.articles-page {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.headingContainer {
+    width: 100%;
+    max-width: 1425px;
+    padding: 30px;
+    margin-bottom: -40px;
+}
+
+.featuredTreksHeading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.search-and-filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 20px;
+}
+
+.searchBar {
+    flex: 1;
+    max-width: 90%;
+}
+
+.sort-container {
+    margin-left: auto;
+}
+
+.searchBtn {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.article-card {
+    background-color: beige;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    cursor: auto;
+}
+
+
+
+.trek-card-meta{
+    padding-top: 10px;
+}
+
+
+.trek-card-itinerary-link{
+    margin-top: 10px;
+}
+
+.article-card-content {
+    display: flex;
+    align-items: flex-start;
+}
+
+.article-card-left {
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.article-card-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.article-card-right {
+    flex-grow: 1;
+    padding-top: 10px;
+}
+
+.article-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.article-card-title {
+    font-size: 24px;
+    color: var(--primaryClr);
+    margin: 0;
+}
+
+.article-card-itinerary-link {
+    color: var(--primaryClr);
+    font-weight: bold;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: inline-block;
+    
+}
+
+.article-card-itinerary-link:hover {
+    text-decoration: underline;
+}
+
+.article-card-meta {
+    font-size: var(--bodyText);
+    color: var(--textclr);
+    margin-bottom: 10px;
+}
+
+.article-card-meta span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.article-card-description {
+    margin-top: 15px;
+    font-size: var(--bodyText);
+    color: var(--textclr);
+    line-height: 1.6;
+}
+
+.article-card-description p {
+    margin-bottom: 10px;
+}
+
+.toggle-description-btn {
+    color: var(--primaryClr);
+    cursor: pointer;
+    font-weight: bold;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    display: inline;
+}
+
+.toggle-description-btn:hover {
+    text-decoration: underline;
+}
+
+.toggle-description-btnDescription {
+    color: var(--primaryClr);
+    cursor: pointer;
+    font-weight: bold;
+    background: none;
+    border: none;
+    padding-top: 25px;
+    font-size: inherit;
+    display: inline;
+}
+
+.toggle-description-btnDescription:hover {
+    text-decoration: underline;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.featured-articles {
+    margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+    .search-and-filter-container {
+        flex-direction: column;
+    }
+
+    .search-bar-container {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .searchBar {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .article-card-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .article-card-left {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .article-card-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .article-card-title {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .article-card-title {
+        font-size: 20px;
+    }
+} */
+
+
+
+/* .articles-page {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.headingContainer {
+    width: 100%;
+    max-width: 1425px;
+    padding: 30px;
+    margin-bottom: -40px;
+}
+
+.featuredTreksHeading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.search-and-filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 20px;
+    width: 100%;
+}
+
+.searchBar {
+    flex: 1;
+    max-width: 90%;
+}
+
+.popular-searches {
+    margin-top: 20px;
+    padding: 10px 0;
+}
+
+.popular-searches p {
+    font-weight: bold;
+    font-size: 16px;
+    color: var(--primaryClr);
+    margin-bottom: 5px;
+}
+
+.popular-searches ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.popular-searches li {
+    margin: 0;
+}
+
+.popular-searches a {
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+    flex-direction: column;
+}
+
+.popular-searches a:hover {
+    text-decoration: underline;
+    color: var(--primaryClr);
+}
+
+.article-card {
+    background-color: beige;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    cursor: auto;
+}
+
+.article-card-content {
+    display: flex;
+    align-items: flex-start;
+}
+
+.article-card-left {
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.article-card-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.article-card-right {
+    flex-grow: 1;
+    padding-top: 10px;
+}
+
+.article-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.article-card-title {
+    font-size: 24px;
+    color: var(--primaryClr);
+    margin: 0;
+}
+
+.article-card-itinerary-link {
+    color: var(--primaryClr);
+    font-weight: bold;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.article-card-itinerary-link:hover {
+    text-decoration: underline;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.featured-articles {
+    margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+    .search-and-filter-container {
+        flex-direction: column;
+    }
+
+    .search-bar-container {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .searchBar {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .article-card-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .article-card-left {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .article-card-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .article-card-title {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .article-card-title {
+        font-size: 20px;
+    }
+} */
+
+
+.articles-page {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.headingContainer {
+    width: 100%;
+    max-width: 1425px;
+    padding: 30px;
+    padding-left: 10px;
+    margin-bottom: -40px;
+}
+
+.featuredTreksHeading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.search-and-filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 20px;
+    width: 100%;
+}
+
+.searchBar {
+    flex: 1;
+    max-width: 90%;
+}
+
+.popular-searches {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.popular-searches h1 {
+    padding-bottom: 10px;
+    font-weight: bold;
+    font-size: 30px;
+    /* color: var(--primaryClr); */
+    color: black;
+    margin-bottom: 30px;
+}
+
+.popular-searches ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.popular-searches li {
+    margin-bottom: 30px;
+}
+
+.popular-searches a {
+    text-decoration: none;
+    font-size: 20px;
+    color: var(--primaryClr);
+    /* color: black; */
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.popular-searches a:hover {
+    text-decoration: underline;
+    color: var(--primaryClr);
+}
+
+.article-card {
+    background-color: beige;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    cursor: auto;
+}
+
+.article-card-content {
+    display: flex;
+    align-items: flex-start;
+}
+
+.article-card-left {
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.article-card-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.article-card-right {
+    flex-grow: 1;
+    padding-top: 10px;
+}
+
+.article-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.article-card-title {
+    font-size: 24px;
+    color: var(--primaryClr);
+    margin: 0;
+}
+
+.article-card-itinerary-link {
+    color: var(--primaryClr);
+    font-weight: bold;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.article-card-itinerary-link:hover {
+    text-decoration: underline;
+}
+
+.toggle-description-btn {
+    color: var(--primaryClr);
+    cursor: pointer;
+    font-weight: bold;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    display: inline;
+}
+
+.toggle-description-btn:hover {
+    text-decoration: underline;
+}
+
+.toggle-description-btnDescription {
+    color: var(--primaryClr);
+    cursor: pointer;
+    font-weight: bold;
+    background: none;
+    border: none;
+    padding-top: 25px;
+    font-size: inherit;
+    display: inline;
+}
+
+.toggle-description-btnDescription:hover {
+    text-decoration: underline;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.featured-articles {
+    margin-top: 0;
+}
+
+@media (max-width: 768px) {
+    .search-and-filter-container {
+        flex-direction: column;
+    }
+
+    .search-bar-container {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .searchBar {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .article-card-content {
+        display: flex;
+        flex-direction: center;
+        align-items: center;
+    }
+
+    .article-card-left {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .article-card-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .article-card-title {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .article-card-title {
+        font-size: 20px;
+    }
+}
+
+.gemini-response {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .gemini-heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primaryClr);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #eee;
+  }
+  
+  .gemini-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 1rem 0;
+  }
+  
+  .gemini-list-item {
+    position: relative;
+    padding: 8px 0 8px 25px;
+    margin-bottom: 8px;
+    color: var(--textclr);
+    font-size: var(--bodyText);
+    line-height: 1.6;
+  }
+  
+  .gemini-list-item::before {
+    content: "•";
+    position: absolute;
+    left: 8px;
+    color: var(--primaryClr);
+    font-weight: bold;
+  }
+  
+  .gemini-paragraph {
+    color: var(--textclr);
+    font-size: var(--bodyText);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .gemini-response {
+      padding: 15px;
+    }
+    
+    .gemini-heading {
+      font-size: 1.25rem;
+    }
+    
+    .gemini-list-item {
+      padding-left: 20px;
+    }
+  }
+  

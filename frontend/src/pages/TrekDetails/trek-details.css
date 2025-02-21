@@ -1,0 +1,278 @@
+/* CSS for Trek Details Page
+.trek-details-page {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.trek-detail-card {
+  background-color: var(--secondaryClr);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.trek-title {
+  font-size: 24px;
+  color: var(--primaryClr);
+  margin-bottom: 10px;
+}
+
+.trek-source,
+.trek-altitude,
+.trek-duration,
+.trek-difficulty,
+.trek-best-time,
+.trek-state {
+  font-size: var(--bodyText);
+  color: var(--textclr);
+  margin-bottom: 10px;
+}
+
+.altitude,
+.duration,
+.difficultyLevel,
+.bestTime,
+.state{
+  color: var(--primaryClr);
+  text-decoration: underline;
+}
+
+.trek-description,
+.trek-itinerary {
+  margin-bottom: 15px;
+  font-size: var(--bodyText);
+  color: var(--textclr);
+  line-height: 1.6;
+}
+
+.trek-description p,
+.trek-itinerary p {
+  margin-bottom: 10px;
+}
+
+.original-source-link {
+  color: var(--primaryClr);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.original-source-link:hover {
+  text-decoration: underline;
+}
+
+.toggle-description-btn {
+  color: var(--primaryClr);
+  cursor: pointer;
+  font-weight: bold;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  display: inline;
+}
+
+.toggle-description-btn:hover {
+  text-decoration: underline;
+}
+
+Responsive Adjustments
+@media (max-width: 768px) {
+  .trek-details-page {
+    padding: 15px;
+  }
+
+  .trek-title {
+    font-size: 20px;
+  }
+
+  .trek-detail-card {
+    padding: 15px;
+  }
+
+  .original-source-link {
+    font-size: var(--smallText);
+  }
+} */
+
+
+
+/* CSS for Trek Details Page */
+/* CSS for Trek Details Page */
+.trek-details-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.trek-card {
+  /* background-color: var(--secondaryClr); */
+  background-color: beige;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  cursor: auto;
+}
+
+.trek-card-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between; /* Make sure the price and image align well */
+  gap: 20px; /* Adds consistent spacing between image and text */
+
+}
+
+.trek-card-left {
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+.trek-card-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.trek-card-right {
+  flex-grow: 1;
+  padding-top: 10px; /* Remove top padding to align details more with the image */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.trek-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.trek-card-siteName {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--primaryClr);
+  margin: 0;
+}
+
+.trek-card-price {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--primaryClr);
+}
+
+.trek-card-rating {
+  background-color: white;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 15px;
+  color: grey;
+  margin-bottom: 10px;
+  width: fit-content;
+}
+
+.trek-card-itinerary-link {
+  color: var(--primaryClr);
+  font-weight: bold;
+  text-decoration: none;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.trek-card-itinerary-link:hover {
+  text-decoration: underline;
+}
+
+.trek-card-meta {
+  font-size: var(--bodyText);
+  color: var(--textclr);
+  margin-bottom: 10px;
+}
+
+.trek-card-meta span {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.trek-card-description {
+  margin-top: 15px;
+  font-size: var(--bodyText);
+  color: var(--textclr);
+  line-height: 1.6;
+}
+
+.trek-card-description p {
+  margin-bottom: 10px;
+}
+
+/* Toggle button for expanding/collapsing the description */
+.toggle-description-btn-trekDetails {
+  color: var(--primaryClr);
+  cursor: pointer;
+  font-weight: bold;
+  background: none;
+  border: none; 
+  padding: 0;
+  font-size: inherit;
+  display: inline;
+}
+
+.toggle-description-btn-trekDetails:hover {
+  text-decoration: underline;
+}
+
+.toggle-description-btn-trekDetailsExpand {
+  color: var(--primaryClr);
+  cursor: pointer;
+  font-weight: bold;
+  background: none;
+  border: none; 
+  padding-top: 10px;
+  font-size: inherit;
+  display: inline;
+}
+
+.toggle-description-btn-trekDetailsExpand:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .trek-details-container {
+    padding: 15px;
+  }
+
+  .trek-card-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .trek-card-left {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .trek-card-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .trek-card-title {
+    font-size: 20px;
+  }
+
+  .trek-card {
+    padding: 15px;
+  }
+
+  .trek-card-price {
+    font-size: 18px;
+    width: 100%;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+  }
+}

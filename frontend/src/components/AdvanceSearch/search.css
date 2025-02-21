@@ -1,0 +1,192 @@
+/* Explore Box Styling */
+.explore-box {
+  background-color: #F9A62F; /* Light background color */
+  /* background-color: ; Light background color */
+  border-radius: 15px; /* Rounded corners */
+  padding: 15px 20px; /* Padding for some space inside */
+  text-align: center; /* Center the text */
+  font-size: 18px; /* Text size */
+  font-weight: bold; /* Make the text bold */
+  color: #333; /* Text color */
+  position: relative; /* Position it relative to other elements */
+  top: -45px; /* Move it above the search box */
+  z-index: 13; /* Make sure it stays on top of the search box */
+  width: 75%; /* Cover top 25% of the search box width */
+  margin: 0 auto 15px auto; /* Center horizontally and add margin-bottom */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+}
+
+.my-custom-button {
+  background-color: #F9A62F; /* Custom background color */
+  color: rgb(0, 0, 0); /* Custom text color */
+  border: none; /* Remove default border */
+  font-weight: bold; /* Make text bold */
+  transition: background-color 0.3s, transform 0.2s; /* Add smooth transition */
+  padding: 10px 20px; /* Adjust padding for better spacing */
+  border-radius: 8px; /* Custom rounded corners */
+}
+
+.my-custom-button:hover {
+  background-color: #576F40; /* Darker shade for hover state */
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  color: #ffffff; /* Ensure text color remains readable */
+}
+
+
+.box-search-advance .box-search {
+  border: 1px solid var(--bgClr);
+  border-radius: 15px;
+  background-color: #f8c57e;
+  padding: 20px;
+  position: relative;
+  top:-70px;
+  z-index: 12;
+  margin-bottom: -50px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.box-search-advance .box-search .item-search {
+  width: 35%;
+  position: relative;
+  padding: 0px 12px;
+}
+
+.item-search-label2 {
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
+  position: relative;
+  padding-bottom: 1px;
+  padding-top: 1px;
+}
+
+
+.search-bar{
+  background-color: black;
+}
+
+
+.box-search-advance .box-search .item-search::before{
+  content: "";
+  position: absolute;
+  top: 1px;
+  right: 7px;
+  width: 0.2px;
+  height: 60px;
+  background-color: #000000;
+}   
+
+.box-search-advance .box-search .item-search-2{
+  display: inline-block;
+
+}
+
+.box-search-advance .box-search .item-search-2 
+.react-datepicker__input-container{
+  font-family: bootstrap-icons !important;
+  font-style: normal;
+  font-weight: 400 !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+}
+
+.box-search-advance .box-search .item-search-2 .react-datepicker-wrapper{
+  display: block;
+}
+
+.box-search-advance .box-search .item-search-2 
+.react-datepicker__input-container::before{
+  content: "\f214";
+  position: absolute;
+  left: 0;
+  bottom: 8px;
+  font-size: var(--bodyText);
+}
+
+
+.box-search-advance .box-search .item-search-2 
+.react-datepicker__input-container::after{
+  content: "\f282";
+  position: absolute;
+  right: 20px;
+  bottom: 8px;
+  font-size: var(--bodyText);
+}
+
+.box-search-advance .box-search .item-search-2 
+.react-datepicker-wrapper input{
+  border: none;
+  padding: 5px 40px 5px 5px;
+  padding-left: 22px !important;
+  line-height: 1.5;
+  width: 100%;
+  font-size: var(--bodyText);
+  font-weight: bold;
+  color:var(--textClr);
+  font-family: "Poppins", sans-serif;
+}
+
+.box-search-advance .box-search .item-search-2 
+.react-datepicker-wrapper input:focus{
+  border: none;
+  outline: none;
+}
+
+.box-search-advance .box-search .item-search .item-search-label {
+  font-size: var(--bodyText);
+  line-height: 22px;
+  color:var(--textClr);
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.box-search-advance .box-search .bd-none::before{
+  display: none;
+}
+
+@media (max-width : 1199px){
+  .box-search-advance .box-search {
+      flex-wrap: wrap;
+  }
+  .box-search-advance .box-search .item-search:last-child{
+      width: 100%;
+      justify-content: center !important;
+      padding: 20px;
+  }
+
+  .box-search-advance .box-search .item-search:last-child .primaryBtn{
+      width: 100%;
+      justify-content: center !important;
+  }
+
+  .box-search-advance .box-search .item-search{
+      width: 25%;
+  }
+}
+
+
+@media (max-width : 991px){
+  .box-search-advance .box-search .item-search{
+      width: 50%;
+      position: relative;
+      padding: 0px 27px;
+      margin-bottom: 15px;
+  }
+  .box-search-advance .box-search .item-search:nth-child(2)::before{
+      display: none;
+  }
+}
+
+@media (max-width : 575px){
+  .box-search-advance .box-search .item-search{
+      width: 100%;
+      border-bottom: 1px solid var(--bs-border-color);
+      padding: 10px;
+  }
+  .box-search-advance .box-search .item-search::before{
+      display: none;
+  }
+}
