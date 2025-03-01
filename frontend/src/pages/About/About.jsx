@@ -67,7 +67,7 @@ const About = () => {
                    </div>
                   <Card.Title className="fw-bold h5"> 50+ Destination  </Card.Title>
                   <p className="mb-2 body-text">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+{/*                   Lorem Ipsum is simply dummy text of the printing and typesetting industry. */}
                   </p>
                 </Card.Body>
               </Card>
@@ -81,7 +81,7 @@ const About = () => {
                    </div>
                   <Card.Title className="fw-bold h5">  Best Price In The Industry  </Card.Title>
                   <p className="mb-2 body-text">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+{/*                   Lorem Ipsum is simply dummy text of the printing and typesetting industry */}
                   </p>
                 </Card.Body>
               </Card>
@@ -95,7 +95,7 @@ const About = () => {
                    </div>
                   <Card.Title className="fw-bold h5">  Super Fast Booking  </Card.Title>
                   <p className="mb-2 body-text">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+{/*                   Lorem Ipsum is simply dummy text of the printing and typesetting industry. */}
                   </p>
                 </Card.Body>
               </Card>
