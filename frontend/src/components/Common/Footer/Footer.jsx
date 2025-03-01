@@ -22,8 +22,8 @@ const Footer = () => {
           {/* Column 2: Contact Information */}
           <Col md={4} sm={12} className="footer-column">
             <h5>Contact Us</h5>
-            <p>123 Trekking Lane</p>
-            <p>Adventure City, AC 45678</p>
+{/*             <p>123 Trekking Lane</p> */}
+{/*             <p>Adventure City, AC 45678</p> */}
             <p>Phone: +91 8860859909</p>
             <p>Email: info@trekkingcompany.com</p>
           </Col>
