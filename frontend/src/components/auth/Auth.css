@@ -1,0 +1,102 @@
+/* Auth pages common styles */
+.auth-container {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  
+  .auth-card {
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    border: none;
+  }
+  
+  .auth-title {
+    color: #576F40;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  
+  .auth-subtitle {
+    color: #6c757d;
+    font-size: 16px;
+  }
+  
+  .auth-button {
+    background-color: #F9A62F;
+    border: none;
+    padding: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  .auth-button:hover {
+    background-color: #576F40;
+    transform: translateY(-2px);
+  }
+  
+  .auth-link {
+    color: #F9A62F;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .auth-link:hover {
+    color: #576F40;
+    text-decoration: underline;
+  }
+  
+  /* Form styles */
+  .form-label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  .form-control {
+    padding: 12px;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    transition: all 0.3s ease;
+  }
+  
+  .form-control:focus {
+    background-color: #fff;
+    border-color: #F9A62F;
+    box-shadow: 0 0 0 0.25rem rgba(249, 166, 47, 0.25);
+  }
+  
+  /* Update navbar auth buttons styling */
+  .auth-buttons {
+    margin-left: 15px;
+  }
+  
+  .welcome-text {
+    align-self: center;
+    color: white;
+    font-weight: 500;
+  }
+  
+  @media (max-width: 767px) {
+    .auth-container {
+      padding-top: 20px;
+    }
+    
+    .auth-card {
+      margin: 0 10px;
+    }
+  }
+  
+  /* Mobile auth buttons adjustments */
+  .mobile-auth-buttons {
+    display: flex;
+  }
+  
+  @media (min-width: 576px) {
+    .mobile-auth-buttons {
+      display: none;
+    }
+  }

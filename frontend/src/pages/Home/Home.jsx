@@ -13,6 +13,7 @@ import PopularPlace from "../../components/PopularPlace/PopularPlace";
 import BookTrek from "../../components/BookTrek/BookTrek"
 // import CustomerReviews from "../../components/CustomerReviews/CustomerReviews";
 import Newsletter from "../../components/Newsletter/Newsletter";
+import DestinationSlider from "../../components/Cards/Cards";
 
 const Home = () => {
   var settings = {
@@ -73,25 +74,7 @@ const Home = () => {
       {/* tour seciton start */}
 
       <section className="tours_section slick_slider">
-        <Container>
-          <Row>
-            <Col md="12">
-              <div className="main_heading">
-                <h1> Top Destinations for your next Trek </h1>
-              </div>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col md="12">
-              <Slider {...settings}>
-                {destinationsData.map((destination, inx) => {
-                  return <Cards destination={destination} key={inx} />;
-                })}
-              </Slider>
-            </Col>
-          </Row>
-        </Container>
+              <DestinationSlider destinationsData={destinationsData}/>
       </section>
 
       {/* tour seciton end */}

@@ -81,7 +81,15 @@ const TrekDetails = () => {
               <div className="trek-card-right">
                 <div className="trek-card-header">
                   <h2 className="trek-card-siteName">{details.website_name}</h2>
-                  <span className="trek-card-price">{details.trek_fee}</span>
+                  {details.trek_fee?(<span>${details.trek_fee}</span>):(<a
+                  href={details.website || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="article-card-itinerary-link"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  Click For Prices
+                </a>)}
                 </div>
                 
                 <div className="trek-card-rating">{details.rating} Rating</div>

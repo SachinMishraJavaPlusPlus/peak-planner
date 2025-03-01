@@ -1,186 +1,156 @@
+// Header.jsx
+
 import React, { useEffect, useState } from "react";
-import {
-  Container,
-  Row,
-  Navbar,
-  Offcanvas,
-  Nav,
-  NavDropdown,
-} from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 import "./header.css";
-// import peakPlannerLogo from "./../../../assets/images/Peakplanner-logo.png";
-import peakPlannerLogo from "./../../../assets/images/logo-header.png";
+import peakPlannerLogo from "./../../../assets/images/logo.png";
 
 const Header = () => {
-  const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [openDropdown, setOpenDropdown] = useState(null);
+    const navigate = useNavigate();
+    const { currentUser, logout } = useAuth();
 
-  const toggleMenu = () => {
-    setOpen(!open);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", isSticky);
-    return () => {
-      window.removeEventListener("scroll", isSticky);
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+        document.body.style.overflow = isMenuOpen ? 'auto' : 'hidden';
     };
-  });
 
-  // Sticky header function
-  const isSticky = () => {
-    const header = document.querySelector(".header-section");
-    const scrollTop = window.scrollY;
-    scrollTop >= 120
-      ? header.classList.add("is-sticky")
-      : header.classList.remove("is-sticky");
-  };
+    const toggleDropdown = (dropdownName) => {
+        setOpenDropdown(openDropdown === dropdownName ? null : dropdownName);
+    };
 
-  const handleSeasonSelect = (season) => {
-    navigate(`/seasonal-treks/${season}`);
-  };
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
-  return (
-    <header className="header-section">
-      <Container>
-        <Row>
-          <Navbar expand="sm" className="p-0">
-            {/* Logo Section */}
-            <Navbar.Brand href="#">
-              <NavLink to="/">
-                <img
-                  className="imgLogo"
-                  src={peakPlannerLogo} 
-                  alt="Peak Planner Logo"
-                />
-              </NavLink>
-            </Navbar.Brand>
-            {/* End of Logo Section */}
-            <Navbar.Toggle
-              aria-controls={`offcanvasNavbar-expand-lg`}
-              onClick={toggleMenu}
-            />
+    const handleScroll = () => {
+        const header = document.querySelector(".header-section");
+        if (window.scrollY >= 120) {
+            header?.classList.add("is-sticky");
+        } else {
+            header?.classList.remove("is-sticky");
+        }
+    };
 
-            <Navbar.Offcanvas
-              id={`offcanvasNavbar-expand-lg`}
-              aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
-              placement="start"
-              show={open}
-              onHide={toggleMenu}
-            >
-              {/* Mobile Logo Section */}
-              <Offcanvas.Header closeButton>
-                <h1 className="Logo">Peak Planner</h1>
-              </Offcanvas.Header>
-              {/* End of Mobile Logo Section */}
+    const handleSeasonSelect = (season) => {
+        navigate(`/seasonal-treks/${season}`);
+        setIsMenuOpen(false);
+        setOpenDropdown(null);
+    };
 
-              <Offcanvas.Body>
-                <Nav className="justify-content-center flex-grow-1 pe-3">
-                  <NavLink className="mx-1 nav-link" to="/top-treks">
-                    Top Treks
-                  </NavLink>
-                  <NavLink className="mx-1 nav-link" to="/seasonal-treks/winter">
-                    Upcoming Treks
-                  </NavLink>
+    const handleLogout = async () => {
+        await logout();
+        navigate("/");
+        setIsMenuOpen(false);
+    };
 
-                  <NavDropdown
-                    title="Seasonal Treks"
-                    id="seasonal-treks-dropdown"
-                  >
-                    <NavDropdown.Item
-                      className="season-dropdown summer"
-                      onClick={() => handleSeasonSelect("summer")}
-                    >
-                      Summer
-                    </NavDropdown.Item>
-                    <NavDropdown.Item
-                      className="season-dropdown monsoon"
-                      onClick={() => handleSeasonSelect("monsoon")}
-                    >
-                      Monsoon
-                    </NavDropdown.Item>
-                    <NavDropdown.Item
-                      className="season-dropdown winter"
-                      onClick={() => handleSeasonSelect("winter")}
-                    >
-                      Winter
-                    </NavDropdown.Item>
-                    <NavDropdown.Item
-                      className="season-dropdown all-seasons"
-                      onClick={() => handleSeasonSelect("all seasons")}
-                    >
-                      All Seasons
-                    </NavDropdown.Item>
-                  </NavDropdown>
+    const handleAuth = (path) => {
+        navigate(path);
+        setIsMenuOpen(false);
+    };
 
-                  {/* Hiking Schools Dropdown */}
-                  <NavDropdown
-                    title="Hiking Schools"
-                    id="hiking-schools-dropdown"
-                  >
-                    <NavDropdown.Item
-                      href="https://www.nimindia.net/"
-                      target="_blank"
-                    >
-                      Nehru Institute of Mountaineering (NIM)
-                    </NavDropdown.Item>
-                    <NavDropdown.Item
-                      href="https://www.abvimas.org/course/list-of-courses/"
-                      target="_blank"
-                    >
-                      Atal Bihari Vajpayee Institute of Mountaineering and
-                      Allied Sports (ABVIMAS)
-                    </NavDropdown.Item>
-                    <NavDropdown.Item
-                      href="https://hmidarjeeling.com/courses-offered/"
-                      target="_blank"
-                    >
-                      Himalayan Mountaineering Institute (HMI)
-                    </NavDropdown.Item>
-                    <NavDropdown.Item
-                      href="https://jawaharinstitutepahalgam.com/Mountaineering.php#gsc.tab=0"
-                      target="_blank"
-                    >
-                      Jawahar Institute of Mountaineering & Winter Sports
-                      (JIM&WS)
-                    </NavDropdown.Item>
-                    <NavDropdown.Item
-                      href="https://nimasdirang.com/Mountaineering-courses"
-                      target="_blank"
-                    >
-                      National Institute of Mountaineering and Allied Sports
-                      (NIMAS)
-                    </NavDropdown.Item>
-                  </NavDropdown>
+    return (
+        <header className="header-section">
+            <div className="navbar-main">
+                <NavLink to="/" className="navbar-logo-container">
+                    <img
+                        className="header-logo"
+                        src={peakPlannerLogo}
+                        alt="Peak Planner Logo"
+                    />
+                </NavLink>
 
-                  <NavLink className="mx-1 nav-link" to="/articles">
-                    Articles
-                  </NavLink>
+                <button className="mobile-toggle" onClick={toggleMenu}>
+                    {isMenuOpen ? '✕' : '☰'}
+                </button>
 
-                  {/* Seasonal Treks Dropdown */}
-                
+                <div className={`nav-wrapper ${isMenuOpen ? "open" : ""}`}>
+                    <nav className="nav-links-container">
+                        <NavLink to="/top-treks" className="nav-item" onClick={() => setIsMenuOpen(false)}>
+                            Top Treks
+                        </NavLink>
+                        <NavLink to="/seasonal-treks/summer" className="nav-item" onClick={() => setIsMenuOpen(false)}>
+                            Upcoming Treks
+                        </NavLink>
 
-                  <NavLink className="mx-1 nav-link" to="/about-us">
-                    About Us
-                  </NavLink>
-                  <NavLink className="mx-1 nav-link" to="/contact-us">
-                    Contact Us
-                  </NavLink>
+                        <div className={`nav-dropdown ${openDropdown === 'seasonal' ? 'open' : ''}`}>
+                            <button className="dropdown-toggle" onClick={() => toggleDropdown('seasonal')}>Seasonal Treks</button>
+                            <div className="dropdown-menu">
+                                <button className="dropdown-item season-dropdown summer" onClick={() => handleSeasonSelect("summer")}>
+                                    Summer
+                                </button>
+                                <button className="dropdown-item season-dropdown monsoon" onClick={() => handleSeasonSelect("monsoon")}>
+                                    Monsoon
+                                </button>
+                                <button className="dropdown-item season-dropdown winter" onClick={() => handleSeasonSelect("winter")}>
+                                    Winter
+                                </button>
+                                <button className="dropdown-item season-dropdown all-seasons" onClick={() => handleSeasonSelect("all seasons")}>
+                                    All Seasons
+                                </button>
+                            </div>
+                        </div>
 
-                  {/* <NavLink className="mx-1 btn btn-outline-primary" to="/login">
-                    Login
-                  </NavLink>
-                  <NavLink className="mx-1 btn btn-primary" to="/signup">
-                    Sign Up
-                  </NavLink> */}
-                </Nav>
-              </Offcanvas.Body>
-            </Navbar.Offcanvas>
-          </Navbar>
-        </Row>
-      </Container>
-    </header>
-  );
+                        <div className={`nav-dropdown ${openDropdown === 'hiking' ? 'open' : ''}`}>
+                            <button className="dropdown-toggle" onClick={() => toggleDropdown('hiking')}>Hiking Schools</button>
+                            <div className="dropdown-menu">
+                                <a href="https://www.nimindia.net/" target="_blank" rel="noopener noreferrer" className="dropdown-item">
+                                    Nehru Institute of Mountaineering (NIM)
+                                </a>
+                                <a href="https://www.abvimas.org/course/list-of-courses/" target="_blank" rel="noopener noreferrer" className="dropdown-item">
+                                    Atal Bihari Vajpayee Institute of Mountaineering and Allied Sports (ABVIMAS)
+                                </a>
+                                <a href="https://hmidarjeeling.com/courses-offered/" target="_blank" rel="noopener noreferrer" className="dropdown-item">
+                                    Himalayan Mountaineering Institute (HMI)
+                                </a>
+                                <a href="https://jawaharinstitutepahalgam.com/Mountaineering.php#gsc.tab=0" target="_blank" rel="noopener noreferrer" className="dropdown-item">
+                                    Jawahar Institute of Mountaineering & Winter Sports (JIM&WS)
+                                </a>
+                                <a href="https://nimasdirang.com/Mountaineering-courses" target="_blank" rel="noopener noreferrer" className="dropdown-item">
+                                    National Institute of Mountaineering and Allied Sports (NIMAS)
+                                </a>
+                            </div>
+                        </div>
+
+                        <NavLink to="/articles" className="nav-item" onClick={() => setIsMenuOpen(false)}>
+                            Articles
+                        </NavLink>
+                        <NavLink to="/about-us" className="nav-item" onClick={() => setIsMenuOpen(false)}>
+                            About Us
+                        </NavLink>
+                        <NavLink to="/contact-us" className="nav-item" onClick={() => setIsMenuOpen(false)}>
+                            Contact Us
+                        </NavLink>
+                    </nav>
+
+                    <div className="auth-buttons">
+                        {currentUser ? (
+                            <>
+                                <span className="welcome-text">Welcome, {currentUser.username}</span>
+                                <button className="auth-button logout-button" onClick={handleLogout}>
+                                    Logout
+                                </button>
+                            </>
+                        ) : (
+                            <>
+                                <button className="auth-button login-button" onClick={() => handleAuth("/login")}>
+                                    Login
+                                </button>
+                                <button className="auth-button signup-button" onClick={() => handleAuth("/signup")}>
+                                    Sign Up
+                                </button>
+                            </>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </header>
+    );
 };
 
 export default Header;

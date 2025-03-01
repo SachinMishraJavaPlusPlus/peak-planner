@@ -58,65 +58,120 @@ import image7 from "../assets/images/logo.png";
 import image8 from "../assets/images/logo.png";
 
 export const destinationsData = [
-    {
-        id: 0,
-        name: "Leh-Ladakh",
-        tours: "5 treks and activities",
-        image: tour5,
-        link: "trek-name",
-        shortDes: "",
-      },
-      {
-        id: 1,
-        name: "Manali",
-        tours: "9 treks and activities",
-        image: tour4,
-        link: "trek-name",
-      },
-      {
-        id: 2,
-        name: "Rishikesh",
-        tours: "5 treks and activities",
-        image: tour6,
-        link: "trek-name",
-      },
-      {
-        id: 3,
-        name: "Sikkim",
-        tours: "4 treks and activities",
-        image: tour7,
-        link: "trek-name",
-      },
-      {
-        id: 4,
-        name: "Spiti Valley",
-        tours: "9 treks and activities",
-        image: tour8,
-        link: "trek-name",
-      },
-      {
-        id: 5,
-        name: "Darjeeling",
-        tours: "4 treks and activities",
-        image: tour9,
-        link: "trek-name",
-      },
-      {
-        id: 6,
-        name: "Coorg",
-        tours: "6 treks and activities",
-        image: tour10,
-        link: "trek-name",
-      },
-      {
-        id: 7,
-        name: "Ooty",
-        tours: "4 treks and activities",
-        image: tour11,
-        link: "trek-name",
-      },
-      
+  {
+    id: 0,
+    name: "Leh-Ladakh",
+    tours: "5 treks and activities",
+    image: tour5,
+    link: "trek-name",
+    points: [
+      "Pangong Lake – A stunning high-altitude lake known for its changing colors.",
+      "Nubra Valley – A valley known for its sand dunes, camel rides, and monasteries.",
+      "Thiksey Monastery – A Tibetan Buddhist monastery offering panoramic views.",
+      "Magnetic Hill – A gravity-defying hill where vehicles appear to move uphill.",
+      "Khardung La Pass – One of the highest motorable roads in the world, offering stunning mountain views."
+    ]
+  },
+  {
+    id: 1,
+    name: "Manali",
+    tours: "9 treks and activities",
+    image: tour4,
+    link: "trek-name",
+    points: [
+      "Solang Valley – Known for adventure activities like paragliding, skiing, and zorbing.",
+      "Rohtang Pass – Famous for its scenic beauty and snow-capped mountains, a popular spot for trekking.",
+      "Old Manali – A charming area with cafes, local shops, and a relaxed vibe.",
+      "Hidimba Devi Temple – A unique wooden temple surrounded by cedar forests.",
+      "Beas River – Ideal for river rafting and spending time amidst nature."
+    ]
+  },
+  {
+    id: 2,
+    name: "Rishikesh",
+    tours: "5 treks and activities",
+    image: tour6,
+    link: "trek-name",
+    points: [
+      "Lakshman Jhula – The iconic suspension bridge over the Ganges River.",
+      "Triveni Ghat – A serene spot for Ganga Aarti in the evening.",
+      "Neelkanth Mahadev Temple – A temple located atop a hill offering panoramic views.",
+      "Rajaji National Park – Known for wildlife sightings like tigers, elephants, and various bird species.",
+      "Parmarth Niketan Ashram – A peaceful retreat offering yoga and meditation experiences."
+    ]
+  },
+  {
+    id: 3,
+    name: "Sikkim",
+    tours: "4 treks and activities",
+    image: tour7,
+    link: "trek-name",
+    points: [
+      "Tsomgo Lake – A glacial lake surrounded by mountains, offering a stunning view.",
+      "Nathula Pass – A border post on the Indo-China border, accessible for tourists.",
+      "Rumtek Monastery – A famous Buddhist monastery with spectacular views.",
+      "Pelling – Known for its panoramic views of Mount Kanchenjunga and various monasteries.",
+      "Yuksom – The starting point for treks to Mount Kanchenjunga and rich in history."
+    ]
+  },
+  {
+    id: 4,
+    name: "Spiti Valley",
+    tours: "9 treks and activities",
+    image: tour8,
+    link: "trek-name",
+    points: [
+      "Key Monastery – One of the oldest and largest monasteries in Spiti, located on a hilltop.",
+      "Chandratal Lake – A beautiful crescent-shaped lake, surrounded by barren mountains.",
+      "Tabo Monastery – A 1,000-year-old Buddhist monastery, known for its ancient murals.",
+      "Pin Valley National Park – Known for its rich flora and fauna, and opportunities for trekking.",
+      "Kaza – The main town in Spiti, offering a glimpse into the region's culture and lifestyle."
+    ]
+  },
+  {
+    id: 5,
+    name: "Darjeeling",
+    tours: "4 treks and activities",
+    image: tour9,
+    link: "trek-name",
+    points: [
+      "Tiger Hill – A famous sunrise point with a view of Kanchenjunga.",
+      "Batasia Loop – A unique railway loop offering scenic views and gardens.",
+      "Peace Pagoda – A Buddhist monument with beautiful views of the town.",
+      "Darjeeling Himalayan Railway – A UNESCO World Heritage Site, also known as the 'Toy Train.'",
+      "Himalayan Mountaineering Institute – A museum dedicated to mountaineering with exhibits on expeditions."
+    ]
+  },
+  {
+    id: 6,
+    name: "Coorg",
+    tours: "6 treks and activities",
+    image: tour10,
+    link: "trek-name",
+    points: [
+      "Abbey Falls – A beautiful waterfall amidst coffee plantations.",
+      "Dubare Elephant Camp – A place where you can interact with elephants.",
+      "Raja's Seat – A garden with a view of the hills, perfect for watching the sunset.",
+      "Talacauvery – The origin of the river Cauvery and a sacred spot for Hindus.",
+      "Madikeri Fort – A historical fort offering views of the town and surrounding landscapes."
+    ]
+  },
+  {
+    id: 7,
+    name: "Ooty",
+    tours: "4 treks and activities",
+    image: tour11,
+    link: "trek-name",
+    points: [
+      "Ooty Lake – A beautiful man-made lake where you can enjoy boating.",
+      "Botanical Gardens – A large garden with diverse flora, ideal for a peaceful stroll.",
+      "Doddabetta Peak – The highest point in Ooty, offering a panoramic view of the Nilgiri hills.",
+      "Rose Garden – A well-maintained garden with a variety of roses and a lovely view.",
+      "Nilgiri Mountain Railway – A UNESCO heritage site, famous for its scenic train ride."
+    ]
+  }
 ];
+
 
 export const popularsData = [
   {

@@ -12,13 +12,19 @@ import UpcomingTreks from './pages/UpcomingTreks/UpcomingTreks';
 import SearchResults from './pages/SearchResults/SearchResults';
 import SeasonalTreks from './pages/SeasonalTreks/SeasonalTreks';
 import TrekDetails from './pages/TrekDetails/TrekDetails';
+import Login from './components/auth/Login';
+import Signup from './components/auth/Signup';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
   return (
   <>
+  <AuthProvider>
   <Header />
   <Routes>
     <Route path="/" element={<Home />} />
+    <Route path="/login" element={<Login />} />
+    <Route path="/signup" element={<Signup />} />
     <Route path="/search-results" element={<SearchResults />} />
     <Route path="/trek-details/:trekName" element={<TrekDetails />} />
     <Route path="articles" element={<Articles />} />
@@ -30,6 +36,7 @@ function App() {
     <Route path="/seasonal-treks/:season" element={<SeasonalTreks />} />
   </Routes>
   <Footer />
+  </AuthProvider>
   </>
   );
 }

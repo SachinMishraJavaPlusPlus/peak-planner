@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import {
   Col,
@@ -15,25 +15,20 @@ import contactImage from "../../assets/images/Landscape2.jpg";
 
 const Contact = () => {
 
-  useEffect(()=>{
-    document.title ="Contact us  "
+  useEffect(() => {
+    document.title = "Contact us  "
     window.scroll(0, 0)
-  },[])
+  }, [])
 
   return (
     <>
-      <Breadcrumbs title="Contact us" pagename="Contact us" backgroundImage={contactImage}/>
+      <Breadcrumbs title="Contact us" pagename="Contact us" backgroundImage={contactImage} />
       <section className="contact  pt-5">
         <Container>
           <Row>
             <Col md="12">
-              <h1 className="mb-2 h1 font-bold">
-                {" "}
-                Let's connect and get to know each other
-              </h1>
               <p className="body-text mt-1">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard{" "}
+                Get in touch with us for any queries, feedback, or assistance. We're here to help!
               </p>
             </Col>
           </Row>
@@ -48,17 +43,13 @@ const Contact = () => {
                   </div>
                   <Card.Title className="fw-bold h5">Call US</Card.Title>
                   <p className="mb-3 body-text">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry.
+                  Have any questions or need assistance? Give us a call, and our team will be happy to help!
                   </p>
                   <div className="d-block justify-content-between">
+                  For trek inquiries, booking assistance, or general questions, reach out to us at 
                     <a type="button" className="btn btn-light me-2 btn-sm">
                       <i className="bi bi-phone me-1"></i>
-                      +12 3456 789
-                    </a>
-                    <a type="button" className="btn btn-light me-2 btn-sm">
-                      <i className="bi bi-telephone me-1"></i>
-                      +12 3456 789
+                      +91 8860859909
                     </a>
                   </div>
                 </Card.Body>
@@ -75,13 +66,13 @@ const Contact = () => {
                   </div>
                   <Card.Title className="fw-bold h5">Email Us</Card.Title>
                   <p className="mb-3 body-text">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry.
+                  Prefer to communicate via email? Drop us a message, and we'll get back to you as soon as possible.
                   </p>
                   <div className="d-block justify-content-between">
+                  For trek details, partnership inquiries, or support, email us at 
                     <a type="button" className="btn btn-light me-2 btn-sm">
                       <i className="bi bi-envelope me-2"></i>
-                      demo@gmail.com
+                      peakplanner0310@gmail.com
                     </a>
                   </div>
                 </Card.Body>
@@ -98,8 +89,8 @@ const Contact = () => {
                   </div>
                   <Card.Title className="fw-bold h5">Social Media</Card.Title>
                   <p className="mb-3 body-text">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry.
+                  Stay updated on upcoming treks, travel tips, and adventure stories. Follow us on
+                  peakplannerofficial 
                   </p>
                   <div className="d-block justify-content-center">
                     <ListGroup horizontal className="justify-content-center">
@@ -107,7 +98,10 @@ const Contact = () => {
                         <i className="bi bi-youtube"></i>
                       </ListGroup.Item>
                       <ListGroup.Item className="border-0">
-                        <i className="bi bi-instagram"></i>
+                        <i
+                          className="bi bi-instagram"
+                          onClick={() => window.location.href = 'https://www.instagram.com/peakplannerofficial?igsh=Z3E1eGt0OGc4NnNw'}
+                        ></i>
                       </ListGroup.Item>
                       <ListGroup.Item className="border-0">
                         <i className="bi bi-twitter"></i>

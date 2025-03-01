@@ -9,8 +9,15 @@ import path from "path";
 import fs from "fs/promises";
 import * as csv from 'csv-parse';
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import connectDB from './config/db.js';
+import errorHandler from './middleware/error.js';
+import authRoutes from './routes/authRoutes.js';
+import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
+
+connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -26,10 +33,20 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
+app.use(cookieParser());
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
 app.get("/",(req,res)=>{
   res.send("SERVER IS RUNNING");
 })
+
+app.use('/api/v1/auth', authRoutes);
+
+app.use(errorHandler);
+
 app.get("/api/trek/:trek_name", async (req, res) => {
   const { trek_name } = req.params;
 
@@ -195,7 +212,7 @@ app.get("/api/trek/:trek_name", async (req, res) => {
             website_name: site.name,
             info: $(site.selectors.info).text().trim(),
             trekData: trekData, // Use the CSV data instead
-            trek_fee: $(site.selectors.trek_fee)?.text().trim() || "Unable to fetch data",
+            trek_fee: $(site.selectors.trek_fee)?.text().trim() || null,
             Avg_batch_size: site.Avg_batch_size,
             Guide_to_trekker_ratio: site.Guide_to_trekker_ratio,
             Rentals: site.Rentals
