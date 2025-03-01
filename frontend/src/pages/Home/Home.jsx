@@ -99,9 +99,17 @@ const Home = () => {
             <div className="main_heading pt-5">
               <h1 className="why-us-heading"> Why Peak Planer? </h1>
               <div style={{ marginBottom: "20px" }}></div>
-              <p className="why-us-text">At Peak Planner, we believe in providing the best trekking experiences with safety, adventure, and affordability. 
+{/*               <p className="why-us-text">At Peak Planner, we believe in providing the best trekking experiences with safety, adventure, and affordability. 
               Our expert guides, curated trails, and high-quality gear ensure a memorable and safe journey. Join us to explore the 
-              breathtaking beauty of nature while creating lifelong memories. </p>
+              breathtaking beauty of nature while creating lifelong memories. </p> */}
+              <div class="why-us-text">
+                <p>We are the only trekking aggregator platform designed to streamline the trekking experience for enthusiasts.</p>
+                <p>By consolidating information from leading trekking organizations, we enable users to easily compare and filter options based on their specific needs and expectations.</p>
+                <ul>
+                  <li>We offer a centralized platform with a user-friendly interface</li>
+                  <li>Help make informed decisions for your next adventure</li>
+                </ul>
+              </div>    
             </div>
           </Col>
         </Row>
