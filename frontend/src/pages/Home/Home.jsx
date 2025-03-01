@@ -97,7 +97,7 @@ const Home = () => {
         <Row>
           <Col md="12">
             <div className="main_heading pt-5">
-              <h1 className="why-us-heading"> Why Peak Planer? </h1>
+              <h1 className="why-us-heading"> Why Peak Planner? </h1>
               <div style={{ marginBottom: "20px" }}></div>
 {/*               <p className="why-us-text">At Peak Planner, we believe in providing the best trekking experiences with safety, adventure, and affordability. 
               Our expert guides, curated trails, and high-quality gear ensure a memorable and safe journey. Join us to explore the 
