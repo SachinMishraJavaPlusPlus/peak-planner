@@ -206,8 +206,13 @@ const Header = () => {
                     <div className="auth-buttons">
                         {currentUser ? (
                             <>
-                                <span className="welcome-text">Welcome, {currentUser.username}</span>
-                                <button className="auth-button logout-button" onClick={handleLogout}>
+                                <span className="welcome-text">
+                                    Welcome, {currentUser.username || currentUser.name || 'User'}
+                                </span>
+                                <button 
+                                    className="auth-button logout-button" 
+                                    onClick={handleLogout}
+                                >
                                     Logout
                                 </button>
                             </>

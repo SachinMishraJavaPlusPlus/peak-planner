@@ -1,6 +1,7 @@
 .tours_section .img-box {
-  padding: 0px 12px;
+  padding: 0px 12x;
   height: 100%;
+  width: 80%;
 }
 
 .img-box .card {
