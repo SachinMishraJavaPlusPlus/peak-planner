@@ -73,9 +73,9 @@ const Home = () => {
 
       {/* tour seciton start */}
 
-      <section className="tours_section slick_slider">
+      {/* <section className="tours_section slick_slider"> */}
               <DestinationSlider destinationsData={destinationsData}/>
-      </section>
+      {/* </section> */}
 
       {/* tour seciton end */}
 

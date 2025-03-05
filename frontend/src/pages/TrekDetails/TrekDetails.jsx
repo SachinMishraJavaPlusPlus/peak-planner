@@ -72,7 +72,7 @@ const TrekDetails = () => {
             <div className="trek-card-content">
               <div className="trek-card-left">
                 <img 
-                  src={imageMap[index] || img1} // Use imageMap with fallback to img1
+                  src={imageMap[index] || img1} 
                   alt={`${details.website_name} logo`}
                   className="trek-card-image" 
                 />
@@ -81,15 +81,19 @@ const TrekDetails = () => {
               <div className="trek-card-right">
                 <div className="trek-card-header">
                   <h2 className="trek-card-siteName">{details.website_name}</h2>
-                  {details.trek_fee?(<span>${details.trek_fee}</span>):(<a
-                  href={details.website || "#"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="article-card-itinerary-link"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  Click For Prices
-                </a>)}
+                  {details.trek_fee ? (
+                    <span>${details.trek_fee}</span>
+                  ) : (
+                    <a
+                      href={details.website || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="article-card-itinerary-link"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Click For Prices
+                    </a>
+                  )}
                 </div>
                 
                 <div className="trek-card-rating">{details.rating} Rating</div>
@@ -105,11 +109,21 @@ const TrekDetails = () => {
                 </a>
                 
                 <div className="trek-card-meta">
-                  <span><strong>Day/Night:</strong> {details.trekData.Duration}</span>
-                  <span><strong>Guide to Trekkers Ratio:</strong> {details.Guide_to_trekker_ratio}</span>
-                  <span><strong>Avg Batch Size:</strong> {details.Avg_batch_size}</span>
-                  <span><strong>Rentals:</strong> {details.Rentals}</span>
-                  <span className="toggle-description-btn-trekDetailsExpand"><strong>Click here to view Description</strong> </span>
+                  <span>
+                    <strong>Day/Night:</strong> {details.trekData?.Duration || 'Not specified'}
+                  </span>
+                  <span>
+                    <strong>Guide to Trekkers Ratio:</strong> {details.Guide_to_trekker_ratio || 'N/A'}
+                  </span>
+                  <span>
+                    <strong>Avg Batch Size:</strong> {details.Avg_batch_size || 'N/A'}
+                  </span>
+                  <span>
+                    <strong>Rentals:</strong> {details.Rentals || 'N/A'}
+                  </span>
+                  <span className="toggle-description-btn-trekDetailsExpand">
+                    <strong>Click here to view Description</strong>
+                  </span>
                 </div>
               </div>
             </div>
@@ -122,7 +136,13 @@ const TrekDetails = () => {
                 >
                   Collapse Description
                 </button>
-                <div dangerouslySetInnerHTML={{ __html: details.trekData.Description }} />
+                <div>
+                  {details.trekData?.Description ? (
+                    <div dangerouslySetInnerHTML={{ __html: details.trekData.Description }} />
+                  ) : (
+                    <p>No description available for this trek.</p>
+                  )}
+                </div>
               </div>
             )}
           </div>
