@@ -43,7 +43,7 @@ app.get("/",(req,res)=>{
   res.send("SERVER IS RUNNING");
 })
 
-app.use('/api/v1/auth', authRoutes);
+// app.use('/api/v1/auth', authRoutes);
 
 app.use(errorHandler);
 
