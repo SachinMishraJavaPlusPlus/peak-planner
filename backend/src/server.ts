@@ -4,7 +4,8 @@ import cors from "cors";
 import { FRONTEND_URL } from "./constants";
 import axios from "axios";
 import * as cheerio from "cheerio";
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-extra";
+import StealthPlugin from "puppeteer-extra-plugin-stealth";
 import path from "path";
 import fs from "fs/promises";
 import * as csv from 'csv-parse';
@@ -15,6 +16,9 @@ import authRoutes from './routes/authRoutes.js';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 
+// Apply stealth plugin
+puppeteer.use(StealthPlugin());
+
 dotenv.config();
 
 connectDB();
@@ -24,7 +28,7 @@ const PORT = process.env.PORT || 5000;
 
 // CORS configuration
 const corsOptions = {
-  origin: FRONTEND_URL,
+  origin: FRONTEND_URL || 'http://localhost:3000',
   credentials: true,
   optionsSuccessStatus: 200,
 };
@@ -34,16 +38,14 @@ app.use(cors(corsOptions));
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(cookieParser());
-
+app.use("/api/v1/auth", authRoutes);
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-app.get("/",(req,res)=>{
+app.get("/", (req, res) => {
   res.send("SERVER IS RUNNING");
-})
-
-// app.use('/api/v1/auth', authRoutes);
+});
 
 app.use(errorHandler);
 
@@ -73,9 +75,9 @@ app.get("/api/trek/:trek_name", async (req, res) => {
     }
 
     // Filter records based on normalized trek name
-    const filteredTreks = records.filter(record => {
-      return record["Trek Name"].toLowerCase() === normalizedTrekName.toLowerCase();
-    });
+    const filteredTreks = records.filter(record => 
+      record["Trek Name"].toLowerCase() === normalizedTrekName.toLowerCase()
+    );
 
     // Add trek data to the scraped results
     const trekData = filteredTreks[0];
@@ -170,66 +172,105 @@ app.get("/api/trek/:trek_name", async (req, res) => {
       // Add more websites here as needed
     ];
 
-    // Scrape data from each website
-    const scrapedData = await Promise.all(
+    // Scrape data from each website with improved error handling
+    const scrapedData = await Promise.allSettled(
       websites.map(async (site) => {
-        try {
-          // Use Bing to search for the trek name and the website domain
-          const searchQuery = `${normalizedTrekName} site:${site.domain} website page url no blog url no extra stuff`;
-          const browser = await puppeteer.launch({
-            headless: true,
-            args: ["--no-sandbox", "--disable-setuid-sandbox"], // Disable sandboxing
-          });
-          const page = await browser.newPage();
+        const maxRetries = process.env.NODE_ENV === 'production' ? 3 : 1;
+        let retries = 0;
 
-          console.log(`Navigating to Bing for ${site.name}...`);
-          await page.goto(`https://www.bing.com/search?q=${encodeURIComponent(searchQuery)}`, {
-            waitUntil: "networkidle2",
-          });
+        while (retries < maxRetries) {
+          try {
+            // Configure browser launch based on environment
+            const browserOptions = process.env.NODE_ENV === 'production' 
+              ? {
+                  headless: "new",
+                  args: [
+                    "--no-sandbox", 
+                    "--disable-setuid-sandbox", 
+                    "--disable-gpu", 
+                    "--disable-dev-shm-usage"
+                  ],
+                  executablePath: process.env.CHROME_PATH || undefined
+                }
+              : { 
+                  headless: "new" 
+                };
 
-          // Wait for the search results to load
-          console.log("Waiting for search results...");
-          await page.waitForSelector("h2 a", { timeout: 10000 }); // Use "h2 a" for Bing search results
+            const browser = await puppeteer.launch(browserOptions);
+            const page = await browser.newPage();
 
-          // Get the URL of the first search result
-          console.log("Extracting the first result URL...");
-          const firstResultUrl = await page.$eval("h2 a", (el) => el.href);
+            // Set user agent and additional browser settings
+            await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
+            
+            // Search query for finding trek information
+            const searchQuery = `${normalizedTrekName} site:${site.domain} website page url no blog url no extra stuff`;
+            
+            // Navigate to Bing search
+            await page.goto(`https://www.bing.com/search?q=${encodeURIComponent(searchQuery)}`, {
+              waitUntil: "networkidle2",
+              timeout: 30000
+            });
 
-          console.log("First result URL:", firstResultUrl);
+            // Wait for search results
+            await page.waitForSelector("h2 a", { 
+              timeout: 15000,
+              visible: true 
+            });
 
-          // Close the browser
-          await browser.close();
+            // Get the first result URL
+            const firstResultUrl = await page.$eval("h2 a", (el) => el.href);
+            await browser.close();
 
-          if (!firstResultUrl) {
-            throw new Error(`No search results found for ${site.name}`);
+            if (!firstResultUrl) {
+              throw new Error(`No search results found for ${site.name}`);
+            }
+
+            // Scrape the trek information from the URL
+            const { data } = await axios.get(firstResultUrl, {
+              timeout: 20000,
+              headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+              }
+            });
+
+            const $ = cheerio.load(data);
+            const siteData = {
+              website: firstResultUrl,
+              website_name: site.name,
+              info: $(site.selectors.info).text().trim(),
+              trekData: trekData,
+              trek_fee: $(site.selectors.trek_fee)?.text().trim() || null,
+              Avg_batch_size: site.Avg_batch_size,
+              Guide_to_trekker_ratio: site.Guide_to_trekker_ratio,
+              Rentals: site.Rentals
+            };
+
+            return siteData;
+          } catch (error) {
+            // console.error(`Attempt ${retries + 1} failed for ${site.name}:`, error);
+            retries++;
+            
+            if (retries >= maxRetries) {
+              return {
+                website: site.name,
+                error: "Failed to scrape data after multiple attempts"
+              };
+            }
+            
+            // Add a small delay between retries
+            await new Promise(resolve => setTimeout(resolve, 2000));
           }
-
-          // Scrape the trek information from the URL
-          const { data } = await axios.get(firstResultUrl);
-          const $ = cheerio.load(data);
-          const siteData = {
-            website: firstResultUrl,
-            website_name: site.name,
-            info: $(site.selectors.info).text().trim(),
-            trekData: trekData, // Use the CSV data instead
-            trek_fee: $(site.selectors.trek_fee)?.text().trim() || null,
-            Avg_batch_size: site.Avg_batch_size,
-            Guide_to_trekker_ratio: site.Guide_to_trekker_ratio,
-            Rentals: site.Rentals
-          };
-
-          return siteData;
-        } catch (error) {
-          console.error(`Error scraping ${site.name}:`, error);
-          return {
-            website: site.name,
-            error: "Failed to scrape data",
-          };
         }
       })
     );
 
-    res.json(scrapedData);
+    // Filter and process successful scraping results
+    const successfulScrapedData = scrapedData
+      .filter(result => result.status === 'fulfilled')
+      .map(result => result.value);
+
+    res.json(successfulScrapedData);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "An error occurred while scraping the data" });
@@ -238,7 +279,7 @@ app.get("/api/trek/:trek_name", async (req, res) => {
 
 app.get("/api/search-treks", async (req, res) => {
   try {
-    const { trek, destination, daysRange, difficulty ,season} = req.query;
+    const { trek, destination, daysRange, difficulty, season } = req.query;
     
     // Read the CSV file
     const csvFilePath = path.join(__dirname, 'client_trek_description.csv');
@@ -251,7 +292,6 @@ app.get("/api/search-treks", async (req, res) => {
       trim: true
     });
 
-    console.log(trek);
     const records = [];
     for await (const record of parser) {
       records.push(record);
@@ -330,5 +370,7 @@ app.get("/api/gemini", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT} in ${process.env.NODE_ENV} mode`);
 });
+
+export default app;
