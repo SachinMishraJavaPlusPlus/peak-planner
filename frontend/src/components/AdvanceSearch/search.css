@@ -59,6 +59,8 @@
   position: relative;
   padding-bottom: 1px;
   padding-top: 1px;
+  background-color: transparent; /* Ensure label background is transparent */
+  color: #000000; /* Ensure label text is black */
 }
 
 
@@ -141,10 +143,25 @@
   font-weight: bold;
   margin-bottom: 5px;
   display: block;
+  background-color: transparent; /* Ensure label background is transparent */
 }
 
 .box-search-advance .box-search .bd-none::before{
   display: none;
+}
+
+/* Dropdown background fix for all screen sizes */
+.dropdown-menu {
+  background-color: white !important;
+}
+
+.item-search .dropdown-toggle {
+  background-color: white !important;
+}
+
+.item-search .dropdown-item {
+  background-color: white !important;
+  color: #000000 !important; /* Ensure dropdown item text is black */
 }
 
 @media (max-width : 1199px){
@@ -188,5 +205,32 @@
   }
   .box-search-advance .box-search .item-search::before{
       display: none;
+  }
+  
+  /* Small screen dropdown fixes */
+  .box-search-advance .box-search .item-search .dropdown-menu,
+  .box-search-advance .box-search .item-search .dropdown-toggle {
+    background-color: white !important;
+  }
+  
+  /* Ensure dropdown text is black on small screens */
+  .box-search-advance .box-search .item-search .dropdown-toggle,
+  .box-search-advance .box-search .item-search .dropdown-menu,
+  .box-search-advance .box-search .item-search .dropdown-item {
+    color: #000000 !important;
+  }
+
+  /* Keep the label backgrounds transparent */
+  .box-search-advance .box-search .item-search .item-search-label2,
+  .box-search-advance .box-search .item-search .item-search-label {
+    background-color: transparent !important;
+    color: #000000 !important;
+  }
+  
+  .box-search-advance .box-search .item-search .dropdown-item:hover,
+  .box-search-advance .box-search .item-search .dropdown-item:active,
+  .box-search-advance .box-search .item-search .dropdown-item.active {
+    background-color: #f8f9fa !important;
+    color: #000000 !important;
   }
 }

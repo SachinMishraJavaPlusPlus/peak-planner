@@ -82,13 +82,13 @@ const Header = () => {
     return (
         <header className="header-section">
             <div className="navbar-main">
-                <NavLink to="/" className="navbar-logo-container">
+                <a href="/" className="navbar-logo-container">
                     <img
                         className="header-logo"
                         src={peakPlannerLogo}
                         alt="Peak Planner Logo"
                     />
-                </NavLink>
+                </a>
 
                 <button className="mobile-toggle" onClick={toggleMenu}>
                     {isMenuOpen ? '✕' : '☰'}

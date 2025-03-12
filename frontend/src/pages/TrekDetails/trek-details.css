@@ -100,6 +100,14 @@ Responsive Adjustments
 
 /* CSS for Trek Details Page */
 /* CSS for Trek Details Page */
+
+.head{
+  font-size:30px;
+  font-weight: bolder;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .trek-details-container {
   padding: 20px;
   max-width: 1200px;
@@ -206,6 +214,10 @@ Responsive Adjustments
 
 .trek-card-description p {
   margin-bottom: 10px;
+}
+
+.details-key{
+  font-weight: bold;
 }
 
 /* Toggle button for expanding/collapsing the description */

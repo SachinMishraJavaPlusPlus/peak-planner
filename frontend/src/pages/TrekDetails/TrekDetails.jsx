@@ -11,6 +11,7 @@ import img3 from "../../assets/images/company_logos/Trek the Himalayas.jpeg";
 import img4 from "../../assets/images/company_logos/The Searching Souls.jpeg";
 import img5 from "../../assets/images/company_logos/Trek Up India.jpeg";
 import img6 from "../../assets/images/company_logos/Himalayan Hikers.jpeg";
+import img7 from "../../assets/images/company_logos/Traveloft.png";
 
 const TrekDetails = () => {
   const { trekName } = useParams();
@@ -26,7 +27,8 @@ const TrekDetails = () => {
     2: img3,
     3: img4,
     4: img5,
-    5: img6
+    5: img6,
+    6: img7
   };
 
   useEffect(() => {
@@ -63,6 +65,7 @@ const TrekDetails = () => {
       <Banner />
       <AdvanceSearch />
       <div className="trek-details-container">
+      <h1 className='head'>{trekName}</h1>
         {trekDetails.map((details, index) => (
           <div 
             key={index} 
@@ -111,19 +114,19 @@ const TrekDetails = () => {
                 
                 <div className="trek-card-meta">
                   <span>
-                    <strong>Day/Night:</strong> {details.trekData?.Duration || 'Not specified'}
+                    <strong className='details-key'>Day/Night:</strong> {details.trekData?.Duration || 'Not specified'}
                   </span>
                   <span>
-                    <strong>Guide to Trekkers Ratio:</strong> {details.Guide_to_trekker_ratio || 'N/A'}
+                    <strong className='details-key'>Guide to Trekkers Ratio:</strong> {details.Guide_to_trekker_ratio || 'N/A'}
                   </span>
                   <span>
-                    <strong>Avg Batch Size:</strong> {details.Avg_batch_size || 'N/A'}
+                    <strong className='details-key'>Avg Batch Size:</strong> {details.Avg_batch_size || 'N/A'}
                   </span>
                   <span>
-                    <strong>Rentals:</strong> {details.Rentals || 'N/A'}
+                    <strong className='details-key'>Rentals:</strong> {details.Rentals || 'N/A'}
                   </span>
                   <span className="toggle-description-btn-trekDetailsExpand">
-                    <strong>Click here to view Description</strong>
+                    <strong >Click here to view Description</strong>
                   </span>
                 </div>
               </div>
