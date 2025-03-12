@@ -17,11 +17,14 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@adminjs/express": "^6.1.1",
+    "@adminjs/mongoose": "^4.1.0",
     "@google/generative-ai": "^0.21.0",
     "@types/cookie-parser": "^1.4.8",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/morgan": "^1.9.9",
+    "adminjs": "^7.8.15",
     "axios": "^1.7.9",
     "bcryptjs": "^3.0.2",
     "cheerio": "^1.0.0",

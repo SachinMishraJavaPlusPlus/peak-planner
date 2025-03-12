@@ -16,6 +16,13 @@ import authRoutes from './routes/authRoutes.js';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 
+// AdminJS imports
+import AdminJS from 'adminjs';
+import AdminJSExpress from '@adminjs/express';
+import * as AdminJSMongoose from '@adminjs/mongoose';
+import mongoose from 'mongoose';
+import User from "./models/User.js";
+
 // Apply stealth plugin
 puppeteer.use(StealthPlugin());
 
@@ -49,6 +56,24 @@ app.get("/", (req, res) => {
 
 app.use(errorHandler);
 
+AdminJS.registerAdapter({
+  Resource: AdminJSMongoose.Resource,
+  Database: AdminJSMongoose.Database
+});
+
+const adminOptions = {
+  resources: [User], // Add models here
+  rootPath: '/admin',
+  branding: {
+    companyName: 'Trek Advisor',
+  },
+};
+
+const admin = new AdminJS(adminOptions);
+
+const router = AdminJSExpress.buildRouter(admin);
+app.use(admin.options.rootPath, router);
+
 app.get("/api/trek/:trek_name", async (req, res) => {
   const { trek_name } = req.params;
 
@@ -59,221 +84,127 @@ app.get("/api/trek/:trek_name", async (req, res) => {
       .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
       .join(' ');
 
-    // Read and parse CSV file
-    const csvFilePath = path.join(__dirname, 'client_trek_description.csv');
-    const fileContent = await fs.readFile(csvFilePath, 'utf-8');
+    // Read and parse the CSV file with trek descriptions
+    const descriptionCsvPath = path.join(__dirname, 'client_trek_description.csv');
+    const descriptionContent = await fs.readFile(descriptionCsvPath, 'utf-8');
     
-    const parser = csv.parse(fileContent, {
+    const descriptionParser = csv.parse(descriptionContent, {
       columns: true,
       skip_empty_lines: true,
       trim: true
     });
 
-    const records = [];
-    for await (const record of parser) {
-      records.push(record);
+    const descriptionRecords = [];
+    for await (const record of descriptionParser) {
+      descriptionRecords.push(record);
     }
 
     // Filter records based on normalized trek name
-    const filteredTreks = records.filter(record => 
+    const filteredTreks = descriptionRecords.filter(record => 
       record["Trek Name"].toLowerCase() === normalizedTrekName.toLowerCase()
     );
 
-    // Add trek data to the scraped results
+    if (filteredTreks.length === 0) {
+      return res.status(404).json({ error: "Trek not found" });
+    }
+
+    // Get trek data from the filtered results
     const trekData = filteredTreks[0];
 
-    // Define the websites to scrape
+    // Read and parse the Trek_Links.csv file
+    const linksCsvPath = path.join(__dirname, 'Trek_Links.csv');
+    const linksContent = await fs.readFile(linksCsvPath, 'utf-8');
+    
+    const linksParser = csv.parse(linksContent, {
+      columns: true,
+      skip_empty_lines: true,
+      trim: true
+    });
+
+    const linksRecords = [];
+    for await (const record of linksParser) {
+      linksRecords.push(record);
+    }
+
+    // Find the trek in the links CSV
+    const trekLinks = linksRecords.find(record => 
+      record["Trek"].toLowerCase() === normalizedTrekName.toLowerCase()
+    );
+
+    if (!trekLinks) {
+      return res.status(404).json({ error: "Trek links not found" });
+    }
+
+    // Define the websites with their additional information
     const websites = [
       {
-        name: "IndiaHikes",
-        domain: "indiahikes.com",
-        selectors: {
-          info: ".QuickInfoSection_snippetWidgetContainer__iMJMp", // Update with correct selector
-          description: ".TrekOverview_readMoreParagraph__H_0qQ", // Update with correct selector
-          trek_fee: ".trek_fee"
-        },
+        name: "India Hikes",
+        column: "IndiaHikes",
         Avg_batch_size: "20-25",
-        Guide_to_trekker_ratio:"1:10",
-        Rentals: "Microspikes included, rest not inciuded in price but are Available"
-      },
-      {
-        name: "TrekkersOfIndia",
-        domain: "trekkersofindia.com",
-        selectors: {
-          info: ".kms", // Update with correct selector
-          description: ".overview", // Update with correct selector
-          trek_fee: ".price_s", // Update with correct selector
-        },
-        Avg_batch_size: "15-20",
-        Guide_to_trekker_ratio:"1:10",
+        Guide_to_trekker_ratio: "1:10",
         Rentals: "Microspikes included, rest not included in price but are Available"
       },
       {
-        name: "Trekker The Himalayas",
-        domain: "trekthehimalayas.com",
-        selectors: {
-          info: ".info", // Update with correct selector
-          description: ".trekdetails", // Update with correct selector
-          trek_fee: "#inr-price", // Update with correct selector
-        },
+        name: "Trekkers of India",
+        column: "Trekkers of India",
+        Avg_batch_size: "15-20",
+        Guide_to_trekker_ratio: "1:10",
+        Rentals: "Microspikes included, rest not included in price but are Available"
+      },
+      {
+        name: "Trek The Himalayas",
+        column: "Trek The Himalayas",
         Avg_batch_size: "25-30",
-        Guide_to_trekker_ratio:"1:8",
+        Guide_to_trekker_ratio: "1:8",
         Rentals: "Microspikes included, rest not included in price but are Available"
       },
       {
         name: "The Searching Souls",
-        domain: "thesearchingsouls.com",
-        selectors: {
-          info: ".elementor-element-47d3c64", // Update with correct selector
-          description: ".elementor-element-b45efef", // Update with correct selector
-          trek_fee: ".sale-price", // Update with correct selector
-        },
+        column: "The Searching Souls",
         Avg_batch_size: "25-30",
-        Guide_to_trekker_ratio:"1:6",
+        Guide_to_trekker_ratio: "1:6",
         Rentals: "Microspikes included, rest not included in price but are Available"
       },
       {
-        name: "The Trek Up India",
-        domain: "trekupindia.com",
-        selectors: {
-          info: ".elementor-element-6356c9e9", // Update with correct selector
-          description: ".elementor-element-6243e260", // Update with correct selector
-          trek_fee: ".elementor-price-table__integer-part", // Update with correct selector
-        },
+        name: "Trek up India",
+        column: "Trekup India",
         Avg_batch_size: "20-25",
-        Guide_to_trekker_ratio:"1:8",
+        Guide_to_trekker_ratio: "1:8",
         Rentals: "Microspikes included, rest not included in price but are Available"
       },
       {
         name: "Himalayan Hikers",
-        domain: "himalayanhikers.in",
-        selectors: {
-          info: ".scroll-description", // Update with correct selector
-          description: ".vc_row wpb_row vc_row-fluid", // Update with correct selector
-          trek_fee: ".woocommerce-Price-amount", // Update with correct selector
-        },
+        column: "Himalayan Hikers",
         Avg_batch_size: "25-30",
-        Guide_to_trekker_ratio:"1:8",
+        Guide_to_trekker_ratio: "1:8",
         Rentals: "Microspikes included, rest not included in price but are Available"
       },
-      // {
-      //   name: "Traveloft India",
-      //   domain: "traveloftindia.com",
-      //   selectors: {
-      //     info: ".", // Update with correct selector
-      //     description: ".LWbAav Kv1aVt", // Update with correct selector
-      //     trek_fee: ".", // Update with correct selector
-      //   },
-      //   Avg_batch_size: "15-20",
-      //   Guide_to_trekker_ratio:"1:10",
-      //   Rentals: "Microspikes included, rest not included in price but are Available"
-
-      // },
-      // Add more websites here as needed
+      {
+        name: "Traveloft India",
+        column: "Traveloft",
+        Avg_batch_size: "15-20",
+        Guide_to_trekker_ratio: "1:10",
+        Rentals: "Microspikes included, rest not included in price but are Available"
+      }
     ];
 
-    // Scrape data from each website with improved error handling
-    const scrapedData = await Promise.allSettled(
-      websites.map(async (site) => {
-        const maxRetries = process.env.NODE_ENV === 'production' ? 3 : 1;
-        let retries = 0;
+    // Create response data by combining trek data with website information
+    const responseData = websites.map(site => {
+      const link = trekLinks[site.column];
+      return {
+        website: link && link.toLowerCase() !== "n/a" ? link : null,
+        website_name: site.name,
+        trekData: trekData,
+        Avg_batch_size: site.Avg_batch_size,
+        Guide_to_trekker_ratio: site.Guide_to_trekker_ratio,
+        Rentals: site.Rentals
+      };
+    });
 
-        while (retries < maxRetries) {
-          try {
-            // Configure browser launch based on environment
-            const browserOptions = process.env.NODE_ENV === 'production' 
-              ? {
-                  headless: "new",
-                  args: [
-                    "--no-sandbox", 
-                    "--disable-setuid-sandbox", 
-                    "--disable-gpu", 
-                    "--disable-dev-shm-usage"
-                  ],
-                  executablePath: process.env.CHROME_PATH || undefined
-                }
-              : { 
-                  headless: "new" 
-                };
-
-            const browser = await puppeteer.launch(browserOptions);
-            const page = await browser.newPage();
-
-            // Set user agent and additional browser settings
-            await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
-            
-            // Search query for finding trek information
-            const searchQuery = `${normalizedTrekName} site:${site.domain} website page url no blog url no extra stuff`;
-            
-            // Navigate to Bing search
-            await page.goto(`https://www.bing.com/search?q=${encodeURIComponent(searchQuery)}`, {
-              waitUntil: "networkidle2",
-              timeout: 30000
-            });
-
-            // Wait for search results
-            await page.waitForSelector("h2 a", { 
-              timeout: 15000,
-              visible: true 
-            });
-
-            // Get the first result URL
-            const firstResultUrl = await page.$eval("h2 a", (el) => el.href);
-            await browser.close();
-
-            if (!firstResultUrl) {
-              throw new Error(`No search results found for ${site.name}`);
-            }
-
-            // Scrape the trek information from the URL
-            const { data } = await axios.get(firstResultUrl, {
-              timeout: 20000,
-              headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-              }
-            });
-
-            const $ = cheerio.load(data);
-            const siteData = {
-              website: firstResultUrl,
-              website_name: site.name,
-              info: $(site.selectors.info).text().trim(),
-              trekData: trekData,
-              trek_fee: $(site.selectors.trek_fee)?.text().trim() || null,
-              Avg_batch_size: site.Avg_batch_size,
-              Guide_to_trekker_ratio: site.Guide_to_trekker_ratio,
-              Rentals: site.Rentals
-            };
-
-            return siteData;
-          } catch (error) {
-            // console.error(`Attempt ${retries + 1} failed for ${site.name}:`, error);
-            retries++;
-            
-            if (retries >= maxRetries) {
-              return {
-                website: site.name,
-                error: "Failed to scrape data after multiple attempts"
-              };
-            }
-            
-            // Add a small delay between retries
-            await new Promise(resolve => setTimeout(resolve, 2000));
-          }
-        }
-      })
-    );
-
-    // Filter and process successful scraping results
-    const successfulScrapedData = scrapedData
-      .filter(result => result.status === 'fulfilled')
-      .map(result => result.value);
-
-    res.json(successfulScrapedData);
+    res.json(responseData);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "An error occurred while scraping the data" });
+    res.status(500).json({ error: "An error occurred while processing the data" });
   }
 });
 
@@ -339,9 +270,7 @@ app.get("/api/gemini", async (req, res) => {
     }
 
     const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY!);
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-
-    // Context prompt to ensure trek-related responses
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" }); // Context prompt to ensure trek-related responses
     const contextPrompt = `You are a trekking expert who only answers questions related to topics similar to these topics like :-(1. Weather forecast of Himachal Pradesh for the 1st week January
 2. Importance of acclimatization before a trek
 3. How to deal with AMS?
@@ -371,6 +300,7 @@ app.get("/api/gemini", async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT} in ${process.env.NODE_ENV} mode`);
+  console.log(`AdminJS started on http://localhost:${PORT}${admin.options.rootPath}`);
 });
 
 export default app;

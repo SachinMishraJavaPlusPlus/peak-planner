@@ -81,22 +81,23 @@ const TrekDetails = () => {
               <div className="trek-card-right">
                 <div className="trek-card-header">
                   <h2 className="trek-card-siteName">{details.website_name}</h2>
-                  {details.trek_fee ? (
-                    <span>${details.trek_fee}</span>
-                  ) : (
+                  {details.website ? (
                     <a
-                      href={details.website || "#"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="article-card-itinerary-link"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      Click For Prices
-                    </a>
+                    href={details.website || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="article-card-itinerary-link"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Click For Prices
+                  </a>
+                    
+                  ) : (
+                    <span>Not Available</span>
                   )}
                 </div>
                 
-                <div className="trek-card-rating">{details.rating} Rating</div>
+                {/* <div className="trek-card-rating">{details.rating} Rating</div> */}
                 
                 <a
                   href={details.website || "#"}

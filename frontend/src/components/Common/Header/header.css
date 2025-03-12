@@ -13,6 +13,7 @@
   align-items: center;
   height: 100px; /* Increased height to accommodate larger logo */
   transition: all 0.3s ease;
+  overflow-y: hidden; /* Added overflow-y: hidden to prevent logo from extending beyond navbar */
 }
 
 /* Main Navbar Container */
@@ -31,11 +32,12 @@
   margin-right: 1rem;
   padding: 0;
   text-decoration: none;
+  overflow-y: hidden; /* Changed from auto to hidden to prevent scrolling */
 }
 
 /* Logo Styling */
 .header-logo {
-  height: 100px; /* Increased logo height */
+  height: 180px; /* Increased logo height */
   width: 250px; /* Increased logo width */
   object-fit: contain;
 }
@@ -44,6 +46,7 @@
 .nav-wrapper {
   display: flex;
   align-items: center;
+  overflow-y: hidden; /* This was already set correctly */
 }
 
 /* Navigation Links Container */
@@ -211,6 +214,7 @@
 @media (max-width: 991.98px) {
   .header-section {
     height: 80px;
+    overflow-y: hidden; /* Added to ensure consistency in mobile view */
   }
 
   .header-logo {
@@ -229,7 +233,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 1rem;
-    overflow-y: auto;
+    overflow-y: auto; /* Keep this as auto for scrolling in mobile menu */
   }
 
   .nav-wrapper.open {
@@ -293,7 +297,7 @@
 @media (max-width: 767.98px) {
   .header-section {
     height: 80px;
-    overflow: hidden;
+    overflow-y: hidden; /* Reinforced for smaller screens */
   }
 
   .header-logo {

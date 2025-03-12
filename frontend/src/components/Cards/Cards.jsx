@@ -77,7 +77,7 @@ const DestinationSlider = ({ destinationsData }) => {
                             alt={destination.name}
                           />
                         </div>
-                        <Card.Title>{destination.name}</Card.Title>
+                        <Card.Title className='destination-name'>{destination.name}</Card.Title>
                         <span className="tours">{destination.tours}</span>
                       </Card>
                     </NavLink>
@@ -88,38 +88,37 @@ const DestinationSlider = ({ destinationsData }) => {
           </Col>
         </Row>
       </Container>
-
+      
       <Modal show={showModal} onHide={handleCloseModal} centered size="lg" className='text-black'>
         <Modal.Header closeButton>
           <Modal.Title>{selectedDestination?.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-  {selectedDestination && (
-    <div className="destination-details">
-      <img
-        src={selectedDestination.image}
-        alt={selectedDestination.name}
-        className="img-fluid mb-4"
-      />
-      <h4 className="mb-3">Tours Available: {selectedDestination.tours}</h4>
-      <p className="mb-4">{selectedDestination.description}</p>
-
-      {selectedDestination.points && selectedDestination.points.length > 0 && (
-        <>
-          <h4 className="mb-3">Points of Interest:</h4>
-          <ul className="list-group">
-            {selectedDestination.points.map((point, index) => (
-              <li key={index} className="list-group-item">{point}</li>
-            ))}
-          </ul>
-        </>
-      )}
-    </div>
-  )}
-</Modal.Body>
-
+          {selectedDestination && (
+            <div className="destination-details">
+              <img
+                src={selectedDestination.image}
+                alt={selectedDestination.name}
+                className="img-fluid mb-4"
+              />
+              <div className="content">
+                <h4 className="mb-3">Tours Available: {selectedDestination.tours}</h4>
+                <p className="mb-4">{selectedDestination.description}</p>
+                {selectedDestination.points && selectedDestination.points.length > 0 && (
+                  <>
+                    <h4 className="mb-3">Points of Interest:</h4>
+                    <ul className="list-group">
+                      {selectedDestination.points.map((point, index) => (
+                        <li key={index} className="list-group-item">{point}</li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </div>
+            </div>
+          )}
+        </Modal.Body>
       </Modal>
-
     </section>
   );
 };

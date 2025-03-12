@@ -1,15 +1,22 @@
+.tours_section {
+  padding: 50px 0px;
+  background: var(--secondaryClr);
+}
+
 .tours_section .img-box {
-  padding: 0px 12x;
+  padding: 0px 12px;
   height: 100%;
   width: 80%;
+  margin: 0 auto;
 }
 
 .img-box .card {
-  border: none;
+  border: none !important;
   width: 100%;
   height: 100%;
   overflow: hidden;
   position: relative;
+  font-size: smaller;
 }
 
 .card-img-wrapper {
@@ -30,7 +37,7 @@
   position: absolute;
   top: 5%;
   left: 3%;
-  font-size: 16px;
+  font-size: var(--subTitle);
   color: #fff;
   line-height: 150%;
   font-weight: bold;
@@ -42,9 +49,9 @@
   position: absolute;
   right: 5%;
   bottom: 5%;
-  font-size: 16px;
+  font-size: var(--bodyText);
   color: var(--primaryClr);
-  line-height: 18px;
+  line-height: 22px;
   font-weight: 600;
   padding: 6px 15px;
   background: #fff;
@@ -63,12 +70,59 @@
   transform: translateX(0);
 }
 
-/* Modal styles */
-.destination-details img {
+/* Modal styles - Updated to center image */
+.destination-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
   width: 100%;
-  max-height: 400px;
-  object-fit: cover;
+}
+
+
+/* Added Bootstrap img-fluid class properties */
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Improved image centering within destination-details */
+.destination-details .img-fluid.mb-4 {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 8px;
+  object-fit: cover;
+  max-height: 400px;
+  width: 80%;
+}
+
+/* Added Bootstrap mb-4 class properties */
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+/* Added Bootstrap mb-3 class properties */
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+/* Ensure the image container takes full width */
+.destination-details .image-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Text content container for better alignment */
+.destination-details .content {
+  width: 100%;
+  text-align: left;
+  margin-top: 1.5rem;
 }
 
 /* Responsive slider fixes */
@@ -76,9 +130,11 @@
   .slick-slide {
     padding: 0 10px;
   }
-  
   .card-img-wrapper {
     aspect-ratio: 4/3;
+  }
+  .destination-details .img-fluid.mb-4 {
+    width: 100%;
   }
 }
 
@@ -90,6 +146,7 @@
 
 .slick-slide.slick-active {
   opacity: 1;
+  border: none !important;
 }
 
 .text-black {
@@ -104,6 +161,7 @@
 .modal-header {
   border-bottom: none;
   padding-bottom: 0;
+  justify-content: center;
 }
 
 .modal-body {
@@ -112,20 +170,29 @@
 
 .destination-details h4 {
   color: #333;
+  font-size: var(--subTitle);
   font-weight: 600;
   margin-bottom: 1rem;
 }
 
 .destination-details p {
   color: #666;
-  line-height: 1.6;
+  font-size: var(--bodyText);
+  line-height: 22px;
   margin-bottom: 1.5rem;
+}
+
+.list-group {
+  width: 100%;
+  padding-left: 1rem;
 }
 
 .list-group-item {
   border: none;
   padding: 0.5rem 1rem;
   color: #666;
+  font-size: var(--bodyText);
+  line-height: 22px;
 }
 
 .list-group-item:before {
@@ -156,4 +223,74 @@
 
 .slick-dots li.slick-active button:before {
   color: var(--primaryClr);
+}
+
+/* Card centering improvements */
+.slide-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Ensure card is centered in slider with proper image alignment */
+.slick-slide > div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Additional Bootstrap classes */
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.body-text {
+  font-size: var(--bodyText);
+  line-height: 22px;
+}
+
+/* CSS equivalents for other Bootstrap classes used */
+.text-dark {
+  color: #343a40;
+}
+
+@media (max-width: 992px) {
+  .tours_section .card img {
+    width: 65px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tours_section {
+    padding: 30px 0px;
+  }
+  .tours_section .card img {
+    width: 55px;
+  }
+  .tours_section .card .card-title {
+    font-size: calc(var(--subTitle) * 0.9);
+    padding: 10px 0px;
+  }
+  .tours_section .card .card-text {
+    font-size: calc(var(--bodyText) * 0.9);
+    line-height: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .tours_section {
+    padding: 20px 0px;
+  }
+  .tours_section .card img {
+    width: 50px;
+  }
+  .tours_section .card .card-title {
+    font-size: calc(var(--subTitle) * 0.8);
+    padding: 8px 0px;
+  }
+  .tours_section .card .card-text {
+    font-size: calc(var(--bodyText) * 0.8);
+    line-height: 18px;
+  }
 }

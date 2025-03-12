@@ -33,7 +33,7 @@ const Footer = () => {
             <h5>Quick Links</h5>
             <ul className="quick-links">
               <li><a href="about-us">About Us</a></li>
-              <li><a href="upcoming-treks">Upcoming Treks</a></li>
+              <li><a href="seasonal-treks/summer">Upcoming Treks</a></li>
               <li><a href="top-treks">Top Treks</a></li>
               <li><a href="hiking-schools">Hiking Schools</a></li>
               <li><a href="articles">Articles</a></li>

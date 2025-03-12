@@ -137,3 +137,12 @@
     font-size: 11px;
   }
 }
+
+.card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: large;
+  font-weight: bold;
+}

@@ -39,6 +39,9 @@ const SearchResults = () => {
       <Banner />
       <AdvanceSearch />
       <div className="search-results-page">
+        <div className='card-header'>
+        Click on the Trek to know more about trekking partners
+        </div>
         {treks.length > 0 ? (
           treks.map((trek, index) => (
             <div key={trek.id || index} className="trek-card-searchResults">
