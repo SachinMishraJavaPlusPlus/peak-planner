@@ -124,7 +124,7 @@ const Header = () => {
                                     Winter
                                 </button>
                                 <button className="dropdown-item season-dropdown all-seasons" onClick={() => handleSeasonSelect("all seasons")}>
-                                    All Season
+                                    All Seasons
                                 </button>
                             </div>
                         </div>
