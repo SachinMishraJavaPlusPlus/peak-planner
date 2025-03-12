@@ -32,12 +32,12 @@ const Footer = () => {
           <Col md={4} sm={12} className="footer-column">
             <h5>Quick Links</h5>
             <ul className="quick-links">
-              <li><a href="about-us">About Us</a></li>
-              <li><a href="seasonal-treks/summer">Upcoming Treks</a></li>
-              <li><a href="top-treks">Top Treks</a></li>
-              <li><a href="hiking-schools">Hiking Schools</a></li>
-              <li><a href="articles">Articles</a></li>
-              <li><a href="contact-us">Contact Us</a></li>
+              <li><a href="https://peak-planner-jade.vercel.app/about-us">About Us</a></li>
+              <li><a href="https://peak-planner-jade.vercel.app/seasonal-treks/summer">Upcoming Treks</a></li>
+              <li><a href="https://peak-planner-jade.vercel.app/top-treks">Top Treks</a></li>
+{/*               <li><a href="hiking-schools">Hiking Schools</a></li> */}
+              <li><a href="https://peak-planner-jade.vercel.app/articles">Articles</a></li>
+              <li><a href="https://peak-planner-jade.vercel.app/contact-us">Contact Us</a></li>
             </ul>
           </Col>
         </Row>
